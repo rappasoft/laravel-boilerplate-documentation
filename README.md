@@ -1,1 +1,0 @@
-## Laravel Boilerplate Documentation Website

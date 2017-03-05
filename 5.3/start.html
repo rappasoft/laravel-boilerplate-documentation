@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>Laravel Boilerplate | Quick Start</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">    
+    <link rel="shortcut icon" href="../favicon.ico">  
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap.min.css">   
+    <!-- Plugins CSS -->    
+    <link rel="stylesheet" href="../assets/plugins/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="../assets/plugins/prism/prism.css">
+    <link rel="stylesheet" href="../assets/plugins/lightbox/dist/ekko-lightbox.min.css">
+    <link rel="stylesheet" href="../assets/plugins/elegant_font/css/style.css">
+    
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="../assets/css/styles.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+</head> 
+
+<body class="body-green">
+    <div class="page-wrapper">
+        <!-- ******Header****** -->
+        <header id="header" class="header">
+            <div class="container">
+                <div class="branding">
+                    <h1 class="logo">
+                        <a href="../../index.html">
+                            <span aria-hidden="true" class="icon_documents_alt icon"></span>
+                            <span class="text-highlight">Laravel</span><span class="text-bold">Boilerplate</span>
+                        </a>
+                    </h1>
+                </div><!--//branding-->
+                <ol class="breadcrumb">
+                    <li><a href="../../index.html">Home</a></li>
+                    <li class="active">Quick Start</li>
+                </ol>
+            </div><!--//container-->
+        </header><!--//header-->
+        <div class="doc-wrapper">
+            <div class="container">
+                <div id="doc-header" class="doc-header text-center">
+                    <h1 class="doc-title"><i class="icon fa fa-paper-plane"></i> Quick Start</h1>
+                    <div class="meta"><i class="fa fa-clock-o"></i> Last updated: December 6th, 2016</div>
+                </div><!--//doc-header-->
+                <div class="doc-body">
+                    <div class="doc-content">
+                        <div class="content-inner">
+                            <section id="feature-section" class="doc-section">
+                                <h2 class="section-title">Features</h2>
+                                <div class="section-block">
+                                    <p>This project is to be served as a basis for a fully fledged web application, it is constantly evolving and has many contributors. It has been converted into many languages, and more are being added every month. As with any project, nothing is perfect, I made this in my spare time and while I have used it for many people, there will always be bugs. If you find a bug please make an issue, also please refrain from making issues that are specific to your project and not the boilerplate. I hope you enjoy all of the hard work I have put into this, I plan on keeping it updated but I will definitely need help if anyone is available to research issues and make pull requests to fix them. Also, don't be insulted if I refactor your code after a pull request, I like to stay organized and keep the flow of the source uniform.</p>
+
+                                    <ul>
+                                        <li>
+                                            Custom Access Control System (Authentication/Users/Roles/Permissions)
+                                            <ul>
+                                                <li>Register/Login/Logout/Password Reset</li>
+                                                <li>Third party login (Github/Facebook/Twitter/Google/Linked In/BitBucket)</li>
+                                                <li>Account Confirmation By E-mail</li>
+                                                <li>Resend Confirmation E-mail</li>
+                                                <li>Login Throttling</li>
+                                                <li>
+                                                    Administrator Management
+                                                    <ul>
+                                                        <li>User Index</li>
+                                                        <li>Activate/Deactivate Users</li>
+                                                        <li>Soft &amp; Permanently Delete Users</li>
+                                                        <li>Resend User Confirmation E-mails</li>
+                                                        <li>Change Users Password</li>
+                                                        <li>Create/Manage Roles</li>
+                                                        <li>Manage Users Roles/Permissions</li>
+                                                        <li>"Login As" User</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>Default Responsive Layout</li>
+                                        <li>Frontend and Backend Controllers</li>
+                                        <li>User Dashboard</li>
+                                        <li>Administration Dashboard with <a href="https://almsaeedstudio.com/" target="_blank">Admin LTE Theme</a></li>
+                                        <li>Namespaced Routes</li>
+                                        <li>Form/HTML Facades Included</li>
+                                        <li>Default Forms Converted to Form Helper Methods</li>
+                                        <li>Master Layout Files with common sections</li>
+                                        <li>Laravel Elixir 6.0</li>
+                                        <li>Elixir Compilation and Auto-Prefixation of CSS in header</li>
+                                        <li>Elixir Compilation and Auto-Prefixation of JS in footer</li>
+                                        <li>Helper functions</li>
+                                        <li>Javascript/jQuery Snippets</li>
+                                        <li><a href="http://getbootstrap.com/" target="_blank">Bootstrap 3</a></li>
+                                        <li><a href="http://fontawesome.io/" target="_blank">Font Awesome</a></li>
+                                        <li>Global Messages/Exception Handling</li>
+                                        <li>Form Macros (State and Country dropdowns, easy to extend)</li>
+                                        <li><a href="https://github.com/laravel/socialite" target="_blank">Socialite Integration</a></li>
+                                        <li><a href="https://github.com/letrunghieu/active" target="_blank">Active Menu</a></li>
+                                        <li><a href="https://github.com/ARCANEDEV/LogViewer" target="_blank">ARCANEDEV Log Viewer</A></li>
+                                        <li><a href="https://laravel-breadcrumbs.readthedocs.io/en/latest/index.html" target="_blank">Dynamic Breadcrumbs</a></li>
+                                        <li>Localization with RTL support in 9 languages so far.</li>
+                                        <li><a href="https://github.com/creativeorange/gravatar" target="_blank">Gravatar</a></li>
+                                        <li><a href="https://github.com/barryvdh/laravel-debugbar" target="_blank">Laravel Debugbar</a></li>
+                                        <li><a href="https://datatables.net/" target="_blank">jQuery Datatables</a></li>
+                                        <li>Built in custom history management facade for accountability</li>
+                                        <li>Event subscribers</li>
+                                        <li><a href="https://github.com/ARCANEDEV/noCAPTCHA" target="_blank">Google reCaptcha</a></li>
+                                        <li>Vue 2.0</li>
+                                        <li>
+                                            Standards
+                                            <ul>
+                                                <li>PSR-2</li>
+                                                <li>Clean Controllers</li>
+                                                <li>Repository/Contract Implementations</li>
+                                                <li>Request Classes</li>
+                                                <li>Events/Handlers</li>
+                                                <li>Entire application split between frontend/backend</li>
+                                                <li>Localization Throughout</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </section><!--//doc-section-->
+
+                            <section id="screenshots-section" class="doc-section">
+                                <h2 class="section-title">Screenshots</h2>
+                                <div class="section-block">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12 col-sm-12">
+                                            <h6>Home Screen</h6>
+                                            <div class="screenshot-holder">
+                                                <a href="../assets/images/1.png" data-title="Home Screen" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/1.png" alt="screenshot"></a>
+                                                <a class="mask hoverZoomLink" href="../assets/images/1.png" data-title="Home Screen" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+                                            </div> 
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-12 col-sm-12">
+                                            <h6>Built in Macros</h6>
+                                            <div class="screenshot-holder">
+                                                <a href="../assets/images/9.png" data-title="Built in Macros" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/9.png" alt="screenshot"></a>
+                                                <a class="mask hoverZoomLink" href="../assets/images/9.png" data-title="Built in Macros" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+                                            </div> 
+                                        </div>
+
+                                        <div class="clearfix"></div>
+
+                                        <div class="col-md-6 col-sm-12 col-sm-12">
+                                            <h6>User Account Management</h6>
+                                            <div class="screenshot-holder">
+                                                <a href="../assets/images/3.png" data-title="User Account Management" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/3.png" alt="screenshot"></a>
+                                                <a class="mask hoverZoomLink" href="../assets/images/3.png" data-title="User Account Management" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+                                            </div> 
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-12 col-sm-12">
+                                            <h6>Frontend Dashboard</h6>
+                                            <div class="screenshot-holder">
+                                                <a href="../assets/images/8.png" data-title="Frontend Dashboard" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/8.png" alt="screenshot"></a>
+                                                <a class="mask hoverZoomLink" href="../assets/images/8.png" data-title="Frontend Dashboard" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+                                            </div> 
+                                        </div>
+
+                                        <div class="clearfix"></div>
+
+                                        <div class="col-md-6 col-sm-12 col-sm-12">
+                                            <h6>Backend Dashboard</h6>
+                                            <div class="screenshot-holder">
+                                                <a href="../assets/images/7.png" data-title="Backend Dashboard" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/7.png" alt="screenshot"></a>
+                                                <a class="mask hoverZoomLink" href="../assets/images/7.png" data-title="Backend Dashboard" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+                                            </div> 
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-12 col-sm-12">
+                                            <h6>User Management</h6>
+                                            <div class="screenshot-holder">
+                                                <a href="../assets/images/5.png" data-title="User Management" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/5.png" alt="screenshot"></a>
+                                                <a class="mask hoverZoomLink" href="../assets/images/5.png" data-title="User Management" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+                                            </div> 
+                                        </div>
+
+                                        <div class="clearfix"></div>
+
+                                        <div class="col-md-6 col-sm-12 col-sm-12">
+                                            <h6>Create User</h6>
+                                            <div class="screenshot-holder">
+                                                <a href="../assets/images/6.png" data-title="Create User" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/6.png" alt="screenshot"></a>
+                                                <a class="mask hoverZoomLink" href="../assets/images/6.png" data-title="Create User" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+                                            </div> 
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-12 col-sm-12">
+                                            <h6>Role Management</h6>
+                                            <div class="screenshot-holder">
+                                                <a href="../assets/images/4.png" data-title="Role Management" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/4.png" alt="screenshot"></a>
+                                                <a class="mask hoverZoomLink" href="../assets/images/4.png" data-title="Role Management" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+                                            </div> 
+                                        </div>
+
+                                        <div class="clearfix"></div>
+
+                                        <div class="col-md-6 col-sm-12 col-sm-12">
+                                            <h6>"Login As" User</h6>
+                                            <div class="screenshot-holder">
+                                                <a href="../assets/images/2.png" data-title="Login As User" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/2.png" alt="screenshot"></a>
+                                                <a class="mask hoverZoomLink" href="../assets/images/2.png" data-title="Login As User" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+                                            </div> 
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-12 col-sm-12">
+                                            <h6>Log Viewer Dashboard</h6>
+                                            <div class="screenshot-holder">
+                                                <a href="../assets/images/11.png" data-title="Log Viewer Dashboard" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/11.png" alt="screenshot"></a>
+                                                <a class="mask hoverZoomLink" href="../assets/images/11.png" data-title="Log Viewer Dashboard" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+                                            </div> 
+                                        </div>
+
+                                        <div class="clearfix"></div>
+
+                                         <div class="col-md-6 col-sm-12 col-sm-12">
+                                            <h6>Log Viewer Logs</h6>
+                                            <div class="screenshot-holder">
+                                                <a href="../assets/images/12.png" data-title="Log Viewer Logs" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/12.png" alt="screenshot"></a>
+                                                <a class="mask hoverZoomLink" href="../assets/images/12.png" data-title="Log Viewer Logs" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+                                            </div> 
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-12 col-sm-12">
+                                            <h6>Log Viewer Details</h6>
+                                            <div class="screenshot-holder">
+                                                <a href="../assets/images/13.png" data-title="Log Viewer Details" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/13.png" alt="screenshot"></a>
+                                                <a class="mask hoverZoomLink" href="../assets/images/13.png" data-title="Log Viewer Details" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+                                            </div> 
+                                        </div>
+
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+
+                            <section id="download-section" class="doc-section">
+                                <h2 class="section-title">Download</h2>
+                                <div class="section-block">
+                                    <a href="https://github.com/rappasoft/laravel-5-boilerplate" class="btn btn-green" target="_blank"><i class="fa fa-github"></i> View on GitHub</a>
+
+                                    <a href="https://github.com/rappasoft/laravel-5-boilerplate/archive/master.zip" class="btn btn-green" target="_blank"><i class="fa fa-download"></i> Download Laravel Boilerplate</a>
+                                </div>
+                            </section><!--//doc-section-->
+
+                            <section id="installation-section" class="doc-section">
+                                <h2 class="section-title">Installation</h2>
+                                <div id="step1"  class="section-block">
+                                    <h3 class="block-title">1. Download</h3>
+                                    <p>Download the files above and place on your server. (This project was developed on <a href="https://laravel.com/docs/master/homestead" target="_blank">Laravel Homestead</a> and I highly recommend you use either that or <a href="https://laravel.com/docs/master/valet" target="_blank">Laravel Velet</a>, to get the optimal server configuration and no errors through installation.)</p>
+                                </div><!--//section-block-->
+
+                                <div id="step2"  class="section-block">
+                                    <h3 class="block-title">2. Composer</h3>
+                                    <p>Laravel project dependencies are managed through the <a href="http://getcomposer.org" target="_blank">PHP Composer tool</a>. The first step is to install the depencencies by navigating into your project in terminal and typing this command:</p>
+                                    <div class="code-block">
+                                        <p><code>composer install</code></p>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+
+                                <div id="step3"  class="section-block">
+                                    <h3 class="block-title">3. NPM/Yarn</h3>
+                                    <p>In order to install the Javascript packages for frontend development, you will need the <a href="https://www.npmjs.com/" target="_blank">Node Package Manager</a>, and optionally the <a href="https://code.facebook.com/posts/1840075619545360" target="_blank">Yarn Package Manager</a> by Facebook (Recommended)</p>
+
+                                    <p>If you only have NPM installed you have to run this command from the root of the project:</p>
+
+                                    <div class="code-block">
+                                        <p><code>npm install</code></p>
+                                    </div><!--//code-block-->
+
+                                    <p>If you have Yarn installed, run this instead from the root of the project:</p>
+
+                                    <div class="code-block">
+                                        <p><code>yarn</code></p>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+
+                                <div id="step4"  class="section-block">
+                                    <h3 class="block-title">4. Environment Files</h3>
+                                    <p>This package ships with a <strong>.env.example</strong> file in the root of the project.</p>
+                                    <p>You must rename this file to just <strong>.env</strong></p>
+                                    <p><strong>Note:</strong> Make sure you have hidden files shown on your system.</p>
+                                </div><!--//section-block-->
+
+                                <div id="step5"  class="section-block">
+                                    <h3 class="block-title">5. Create Database</h3>
+                                    <p>You must create your database on your server and on your <strong>.env</strong> file update the following lines:</p>
+
+                                    <div class="code-block">
+                                        <p>
+                                            <code>DB_CONNECTION=mysql<br/>
+                                            DB_HOST=127.0.0.1<br/>
+                                            DB_PORT=3306<br/>
+                                            DB_DATABASE=homestead<br/>
+                                            DB_USERNAME=homestead<br/>
+                                            DB_PASSWORD=secret</code>
+                                        </p>
+                                    </div><!--//code-block-->
+
+                                    <p>Change these lines to reflect your new database settings.</p>
+                                </div><!--//section-block-->
+
+                                <div id="step6"  class="section-block">
+                                    <h3 class="block-title">6. Artisan Commands</h3>
+                                    <p>The first thing we are going to so is set the key that Laravel will use when doing encryption.</p>
+
+                                    <div class="code-block">
+                                        <p><code>php artisan key:generate</code></p>
+                                    </div><!--//code-block-->
+
+                                    <p>You should see a green message stating your key was successfully generated. As well as you should see the <strong>APP_KEY</strong> variable in your <strong>.env</strong> file reflected.</p>
+
+                                    <p>It's time to see if your database credentials are correct.</p>
+
+                                    <p>We are going to run the built in migrations to create the database tables:</p>
+
+                                    <div class="code-block">
+                                        <p><code>php artisan migrate</code></p>
+                                    </div><!--//code-block-->
+
+                                    <p>You should see a message for each table migrated, if you don't and see errors, than your credentials are most likely not correct.</p>
+
+                                    <p>We are now going to set the administrator account information. To do this you need to navigate to <a href="https://github.com/rappasoft/laravel-5-boilerplate/blob/master/database/seeds/Access/UserTableSeeder.php#L35" target="_blank">this file</a> and change the name/email/password of the Administrator account.</p>
+
+                                    <p>You can delete the other dummy users, but do not delete the administrator account or you will not be able to access the backend.</p>
+
+                                    <p>Now seed the database with:</p>
+
+                                    <div class="code-block">
+                                        <p><code>php artisan db:seed</code></p>
+                                    </div><!--//code-block-->
+
+                                    <p>You should get a message for each file seeded, you should see the information in your database tables.</p>
+                                </div><!--//section-block-->
+
+                                <div id="step7"  class="section-block">
+                                    <h3 class="block-title">7. Gulp</h3>
+                                    <p>Now that you have the database tables and default rows, you need to build the frontend styles and scripts.</p>
+
+                                    <p>These files are generated using <a href="https://laravel.com/docs/master/elixir" target="_blank">Laravel Elixir</a>, which is a wrapper around many tools, and works off the <strong>gulpfile.js</strong> in the root of the project.</p>
+
+                                    <p>To build these files you will need a tool called <a href="http://gulpjs.com/" target="_blank">gulp</a> installed.</p>
+
+                                    <p>You can install with:</p>
+
+                                    <div class="code-block">
+                                        <p><code>sudo npm install -g gulp</code></p>
+                                    </div><!--//code-block-->
+
+                                    <p>After installed, from the root of the project run the gulp command:</p>
+
+                                    <div class="code-block">
+                                        <p><code>gulp</code></p>
+                                    </div><!--//code-block-->
+
+                                    <p>You will see a lot of information flash on the screen and then be provided with a table at the end explaining what was compiled and where the files live.</p>
+
+                                    <p>At this point you are done, you should be able to hit the project in your local browser and see the project, as well as be able to log in with the administrator and view the backend.</p>
+                                </div><!--//section-block-->
+
+                                <div id="step8"  class="section-block">
+                                    <h3 class="block-title">8. PHPUnit</h3>
+                                    <p>After your project is installed, make sure you run the test suite to make sure all of the parts are working correctly. From the root of your project run:</p>
+
+                                    <div class="code-block">
+                                        <p><code>phpunit</code></p>
+                                    </div><!--//code-block-->
+
+                                    <p>You will see a dot(.) appear for each of the hundreds of tests, and then be provided with the amount of passing tests at the end. There should be no failures with a fresh install.</p>
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+
+                            <section id="whatsnext-section" class="doc-section">
+                                <h2 class="section-title">What's Next?</h2>
+
+                                <div class="section-block">
+                                    <p>At this point you have all that you need, you can browse the code base and build the rest of your application the way you normally would. Or you can visit the <a href="documentation.html">documentation</a> to get a really good grasp on what's going on behind the scenes.</p>
+                                </div><!--//section-block-->
+                             </section><!--//doc-section-->
+                        </div><!--//content-inner-->
+                    </div><!--//doc-content-->
+                    <div class="doc-sidebar hidden-xs">
+                        <nav id="doc-nav">
+                            <ul id="doc-menu" class="nav doc-menu" data-spy="affix">
+                                <li><a class="scrollto" href="#feature-section">Features</a></li>
+                                <li><a class="scrollto" href="#screenshots-section">Screenshots</a></li>
+                                <li><a class="scrollto" href="#download-section">Download</a></li>
+                                <li><a class="scrollto" href="#installation-section">Installation</a></li>
+                                <li><a class="scrollto" href="#whatsnext-section">What's Next?</a></li>
+                            </ul><!--//doc-menu-->
+                        </nav>
+                    </div><!--//doc-sidebar-->
+                </div><!--//doc-body-->              
+            </div><!--//container-->
+        </div><!--//doc-wrapper-->
+        
+    </div><!--//page-wrapper-->
+    
+    <footer class="footer text-center">
+        <div class="container">
+            <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
+            <small class="copyright">Designed with <i class="fa fa-heart"></i> by <a href="http://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a> for developers.</small>
+
+            <small class="copyright">Created by <a href="http://www.rappasoft.com" target="_blank">Anthony Rappa</a> and made perfect by an <a href="https://github.com/rappasoft/laravel-5-boilerplate/graphs/contributors" target="_blank">amazing community of people.</a></small>
+            
+        </div><!--//container-->
+    </footer><!--//footer-->
+    
+     
+    <!-- Main Javascript -->          
+    <script type="text/javascript" src="../assets/plugins/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../assets/plugins/prism/prism.js"></script>    
+    <script type="text/javascript" src="../assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>  
+    <script type="text/javascript" src="../assets/plugins/lightbox/dist/ekko-lightbox.min.js"></script>
+    <script type="text/javascript" src="../assets/plugins/jquery-match-height/jquery.matchHeight-min.js"></script>
+    <script type="text/javascript" src="../assets/js/main.js"></script>
+</body>
+</html> 
+
