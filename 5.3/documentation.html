@@ -63,7 +63,7 @@
                                 <div class="section-block">
                                     <p>There are many events that are fired throughout the applications lifecycle if they meet the requirements.</p>
 
-                                    <p>A currently list of events fired are:</p>
+                                    <p>A current list of events fired are:</p>
 
                                     <p><strong>Frontend</strong></p>
                                     <ul>
@@ -130,7 +130,8 @@
 
                                     <p>Any custom exceptions live in the <strong>app\Exceptions</strong> directory.</p>
 
-                                    <p>You can see it in action in the <a href="https://github.com/rappasoft/laravel-5-boilerplate/blob/master/app/Exceptions/Handler.php#L63" target="_blank">Exception Handler</a> class here.</p>
+                                    <p>You can see it in action in the <a
+                                            href="https://github.com/rappasoft/laravel-5-boilerplate/blob/master/app/Exceptions/Handler.php#L67" target="_blank">Exception Handler</a> class here.</p>
 
                                     <p>Anytime you throw this exception, it will not display a "Whoops" error. Instead, it will take the error into a session variable and redirect the user to the previous page and display the message in a bootstrap danger alert box.</p>
 
@@ -166,7 +167,8 @@
                                     <ul>
                                         <li>The <strong>config\breadcrumbs.php</strong> file which tells the system which view file to use for the rendering.</li>
                                         <li>The <strong>views\backend\includes\partials\breadcrumbs.blade.php</strong> file which renders the links.</li>
-                                        <li><a href="https://github.com/rappasoft/laravel-5-boilerplate/blob/master/resources/views/backend/layouts/app.blade.php#L58" target="_blank">The call</a> to render the breadcrumbs.</li>
+                                        <li><a
+                                                href="https://github.com/rappasoft/laravel-5-boilerplate/blob/master/resources/views/backend/layouts/app.blade.php#L57" target="_blank">The call</a> to render the breadcrumbs.</li>
                                         <li>The breadcrumb files located in <strong>app\Http\Breadcrumbs</strong>.</li>
                                         <li>The <strong>app\Http\breadcrumbs.php</strong> file that the plugin looks for to render the links.</li>
                                     </ul>
@@ -231,7 +233,8 @@
 
                                     <ul>
                                         <li><strong>The namespaces of the routes indicate the folder structure.</strong> In the above case the routes that will be included live in <strong>routes\Frontend</strong>.</li>
-                                        <li>The <strong>as</strong> property appends the value to all routes inside the closure, so in the above case all included route names will be prepended with <strong>frontend.</strong>.</li>
+                                        <li>The <strong>as</strong> property prepends the value to all routes inside
+                                            the closure, so in the above case all included route names will be prepended with <strong>frontend.</strong>.</li>
                                         <li>The <strong>includeRouteFiles()</strong> is a helper function located in <strong>app\helpers.php</strong> and autoloaded by composer. (Learn about the <a href="#helpers">helpers here</a>). This takes all files in the specified directory and includes them in the closure so you can add new routes without having to touch the <strong>web.php</strong> routes file.</li>
                                     </ul>
 
@@ -252,8 +255,9 @@
 
                                 <ul>
                                     <li><strong>The namespaces of the routes indicate the folder structure.</strong> In the above case the routes that will be included live in <strong>routes\Backend</strong>.</li>
-                                    <li>The <strong>as</strong> property appends the value to all routes inside the closure, so in the above case all included route names will be prepended with <strong>admin.</strong>.</li>
-                                    <li>The <strong>prefix</strong> property appends the value before all of the URL's of the routes inside the closure, so in the above case all route URL's will be prepended with <strong>admin/</strong>.</li>
+                                    <li>The <strong>as</strong> property prepends the value to all routes inside the
+                                        closure, so in the above case all included route names will be prepended with <strong>admin.</strong>.</li>
+                                    <li>The <strong>prefix</strong> property prepends the value before all of the URL's of the routes inside the closure, so in the above case all route URL's will be prepended with <strong>admin/</strong>.</li>
                                     <li>The <strong>includeRouteFiles()</strong> is a helper function located in <strong>app\helpers.php</strong> and autoloaded by composer. (Learn about the <a href="#helpers">helpers here</a>). This takes all files in the specified directory and includes them in the closure so you can add new routes without having to touch the <strong>web.php</strong> routes file.</li>
                                     <li>The <strong>admin</strong> middleware is specified in <strong>app\Http\Kernel.php</strong> and states that anyone trying to access the routes in the following closure must:
                                         <ul>
@@ -283,7 +287,8 @@
                                         <li>All database logic is extracted out to <a href="#repositories">Repositories</a>.</li>
                                         <li>Controllers are only comprised of CRUD methods, any other methods have been extracted to other controllers for cleanliness.</li>
                                         <li>Any data table has its own dedicated controller.</li>
-                                        <li>Any data being binded or returned to views are using Laravel <a href="#magic-methods">magic</a> with() method just like elsewhere in the application.
+                                        <li>Any data being bound or returned to views are using Laravel <a
+                                                href="#magic-methods">magic</a> with() method just like elsewhere in the application.
                                             <ul>
                                                 <li>Example: <strong>withUser($user)</strong> is converted to <strong>with('user', $user)</strong></li>
                                             </ul>
@@ -437,7 +442,7 @@
                                         <p>As you can see it does two things:</p>
 
                                         <ul>
-                                            <li>It authorizes the user against the give permission.</li>
+                                            <li>It authorizes the user against the given permission.</li>
                                             <li>It validates the incoming request.</li>
                                         </ul>
 
@@ -571,7 +576,8 @@
 
                                         <ul>
                                             <li>The boot method does the same checks as the <a href="#localization-middleware">LocalizationMiddleware</a> class.</li>
-                                            <li>There is a conditional to check to see if the app is in production if you need to anything specific such as force https.</li>
+                                            <li>There is a conditional to check to see if the app is in production if
+                                                you need to do anything specific such as force https.</li>
                                             <li>The register method has a conditional for local development where you can register service providers that you only need for local development, since there is no point in registering them in a production environment.</li>
                                         </ul>
                                     </div><!--//section-block-->
