@@ -4,10 +4,10 @@ $(document).ready(function() {
 	/* Ref: http://getbootstrap.com/javascript/#affix-examples */
 
     	
-	$('#doc-menu').affix({
+    $('#doc-menu').affix({
         offset: {
-            top: ($('#header').outerHeight(true) + $('#doc-header').outerHeight(true)) + 45,
-            bottom: ($('#footer').outerHeight(true) + $('#promo-block').outerHeight(true)) + 75
+            top: ($('#header').outerHeight(true) + $('#doc-header').outerHeight(true)),
+            bottom: ($('#footer').outerHeight(true) + $('#promo-block').outerHeight(true))
         }
     });
     
