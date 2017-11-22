@@ -116,9 +116,6 @@
 
                                     <p>Any custom exceptions live in the <strong>app\Exceptions</strong> directory.</p>
 
-                                    <p>You can see it in action in the <a
-                                            href="https://github.com/rappasoft/laravel-5-boilerplate/blob/master/app/Exceptions/GeneralException.php#L51" target="_blank">Exception Handler</a> class here.</p>
-
                                     <p>Anytime you throw this exception, it will not display a "Whoops" error. Instead, it will take the error into a session variable and redirect the user to the previous page and display the message in a bootstrap danger alert box.</p>
 
                                     <p>If a regular PHP Exception is thrown, it will still get caught and the default functionality will takeover.</p>
@@ -200,7 +197,7 @@
 
                                     <div class="code-block">
                                         <pre><code class="language-php">Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
-    includeRouteFiles(__DIR__ . '/Frontend/');
+    includeRouteFiles(__DIR__ . '/frontend/');
 });</code></pre>
                                     </div><!--//code-block-->
 
@@ -219,7 +216,7 @@
 
                                     <div class="code-block">
                                         <pre><code class="language-php">Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function () {
-    includeRouteFiles(__DIR__ . '/Backend/');
+    includeRouteFiles(__DIR__ . '/backend/');
 });</code></pre>
                                      </div><!--//code-block-->
                                 </div><!--//section-block-->
