@@ -967,14 +967,14 @@ if(mix.inProduction){
                                     <p>In both of these examples you will see a compound function call, that doesn't exist in the documentation.</p>
 
                                     <ul>
-                                        <li>withFlashDanger</li>
-                                        <li>withUsers</li>
+                                        <li>withFlashSuccess</li>
+                                        <li>withUser</li>
                                     </ul>
 
                                     <p>Laravel will convert both of these methods to a default <strong>with()</strong> method when it compiles, so both of the above examples will output the following code.</p>
 
                                     <div class="code-block">
-                                        <pre><code class="language-php">return redirect()->route('admin.auth.user.index')->with('flash_danger', trans('alerts.backend.users.created'));</code></pre>
+                                        <pre><code class="language-php">return redirect()->route('admin.auth.user.index')->with('flash_success', trans('alerts.backend.users.created'));</code></pre>
                                     </div><!--//code-block-->
 
                                     <p>or:</p>
