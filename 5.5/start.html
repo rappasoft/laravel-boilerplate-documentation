@@ -333,7 +333,7 @@
 
                                     <p>You should see a message for each table migrated, if you don't and see errors, than your credentials are most likely not correct.</p>
 
-                                    <p>We are now going to set the administrator account information. To do this you need to navigate to <a href="https://github.com/rappasoft/laravel-5-boilerplate/blob/master/database/seeds/Auth/UserTableSeeder.php#L24" target="_blank">this file</a> and change the name/email/password of the Administrator account.</p>
+                                    <p>We are now going to set the administrator account information. To do this you need to navigate to <a href="https://github.com/rappasoft/laravel-5-boilerplate/blob/master/database/seeds/Access/UserTableSeeder.php#L35" target="_blank">this file</a> and change the name/email/password of the Administrator account.</p>
 
                                     <p>You can delete the other dummy users, but do not delete the administrator account or you will not be able to access the backend.</p>
 
@@ -375,9 +375,18 @@
 
                                     <p>You will see a dot(.) appear for each of the hundreds of tests, and then be provided with the amount of passing tests at the end. There should be no failures with a fresh install.</p>
                                 </div><!--//section-block-->
+                                
+                                <div id="step9"  class="section-block">
+                                    <h3 class="block-title">9. Storage:link</h3>
+                                    <p>After your project is installed you must run this command to link your public storage folder for user avatar uploads:</p>
 
-                                <div id="step8"  class="section-block">
-                                    <h3 class="block-title">9. Login</h3>
+                                    <div class="code-block">
+                                        <p><code>php artisan storage:link</code></p>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+
+                                <div id="step10"  class="section-block">
+                                    <h3 class="block-title">10. Login</h3>
                                     <p>After your project is installed and you can access it in a browser, click the login button on the right of the navigation bar.</p>
                                     <p>The administrator credentials are:</p>
 
@@ -437,4 +446,3 @@
     <script type="text/javascript" src="../assets/js/main.js"></script>
 </body>
 </html> 
-
