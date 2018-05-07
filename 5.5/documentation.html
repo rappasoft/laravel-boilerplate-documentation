@@ -916,13 +916,18 @@ if(mix.inProduction){
                             <section id="testing" class="doc-section">
                                 <h2 class="section-title">Testing</h2>
                                 <div class="section-block">
-                                    <p>The test suite is currently comprised of over 100 tests and 500 assertions to test all of the sections in this documentation.</p>
+                                    <p>The test suite is currently comprised of almost 100 tests and 200 assertions to test all of the sections in this documentation.</p>
+
+                                    <p>We wrote the Tests to be as expressive as possible that you can figure out possible problems faster by running them</p>
 
                                     <p>We will not go into detail here since they change so often, but with a fresh installation everything should pass if you have the right configurations.</p>
 
                                     <p>To run the tests run <strong>phpunit</strong> from the command line in the root of the project.</p>
 
-                                    <p><strong>Note:</strong> You will need to set up mail for all the tests to pass. I suggest a <a href="https://mailtrap.io" target="_blank">Mailtrap</a> account for testing.</p>
+                                    <p>Additionally we built in a test suite for your Vue Components which is based on <a href="https://facebook.github.io/jest/" target="_blank">facebook/jest</a></p>
+
+                                    <p>To run the jest tests run <strong>npm run test</strong> or <strong>npm run tdd</strong> to start a test watcher.</p>
+
                                 </div><!--//section-block-->
                             </section><!--//doc-section--> 
 
