@@ -151,7 +151,7 @@
 									<li>The <strong>config\breadcrumbs.php</strong> file which tells the system which view file to use for the rendering.</li>
 									<li>The <strong>views\backend\includes\partials\breadcrumbs.blade.php</strong> file which renders the links.</li>
 									<li><a
-											href="https://github.com/rappasoft/laravel-5-boilerplate/blob/master/resources/views/backend/layouts/app.blade.php#L34" target="_blank">The call</a> to render the breadcrumbs.</li>
+											href="https://github.com/rappasoft/laravel-boilerplate/blob/master/resources/views/backend/layouts/app.blade.php#L34" target="_blank">The call</a> to render the breadcrumbs.</li>
 									<li>The breadcrumb files located in <strong>routes/breadcrumbs</strong>.</li>
 									<li>The <strong>resources/views/backend/includes/partials/breadcrumbs.php</strong> file that the plugin looks for to render the links.</li>
 								</ul>
@@ -564,7 +564,7 @@
 
 									<p>Since most of the controller/routes use Laravels <a href="https://laravel.com/docs/master/routing#route-model-binding" target="_blank">Route/Model</a> Binding, there is one instance where we need to specify a binding.</p>
 
-									<p>We specify this binding for use in <a href="https://github.com/rappasoft/laravel-5-boilerplate/blob/master/routes/Backend/Access.php#L56" target="_blank">deleting/restoring</a> a user, because the binding needs to know to have to check for deleted users as well. If you get rid of this and just use the default user binding, it will fail because it's not checking for a user id that has a non-null deleted_at timestamp.</p>
+									<p>We specify this binding for use in <a href="https://github.com/rappasoft/laravel-boilerplate/blob/master/routes/Backend/Access.php#L56" target="_blank">deleting/restoring</a> a user, because the binding needs to know to have to check for deleted users as well. If you get rid of this and just use the default user binding, it will fail because it's not checking for a user id that has a non-null deleted_at timestamp.</p>
 								</div><!--//section-block-->
 							</div><!--//section-block-->
 						</section><!--//doc-section-->
@@ -749,15 +749,15 @@
 							<div class="section-block">
 								<p>Laravel Boilerplate comes in many languages, each language has it's own folder as usual, the language files are very well organized and indented.</p>
 
-								<p>If you would like to contribute a language, please make a pull request based on the <a href="https://github.com/rappasoft/laravel-5-boilerplate/wiki/Localization" target="_blank">requirements</a>.</p>
+								<p>If you would like to contribute a language, please make a pull request based on the <a href="https://github.com/rappasoft/laravel-boilerplate/wiki/Localization" target="_blank">requirements</a>.</p>
 
 								<p>The parts of the localization system are:</p>
 
 								<ul>
 									<li>The AppServiceProvider boot method</li>
 									<li>The LocaleMiddleware</li>
-									<li>The <a href="https://github.com/rappasoft/laravel-5-boilerplate/tree/master/resources/lang" target="_blank">language files</a></li>
-									<li>The <a href="https://github.com/rappasoft/laravel-5-boilerplate/blob/master/resources/views/includes/partials/lang.blade.php" target="_blank">language dropdowns</a></li>
+									<li>The <a href="https://github.com/rappasoft/laravel-boilerplate/tree/master/resources/lang" target="_blank">language files</a></li>
+									<li>The <a href="https://github.com/rappasoft/laravel-boilerplate/blob/master/resources/views/includes/partials/lang.blade.php" target="_blank">language dropdowns</a></li>
 								</ul>
 
 								<p>The language files try to be as organized as possible first by file name, then by keys frontend, backend, or global. Then by the 'type' they may be display, i.e. 'auth'. Please try to keep them organized if you are contributing to them on GitHub.</p>
@@ -949,7 +949,7 @@ if (mix.inProduction() || process.env.npm_lifecycle_event !== 'hot') {
 							<div id="flash-messages"  class="section-block">
 								<h3 class="block-title">Flash Messages</h3>
 
-								<p>The <a href="https://github.com/rappasoft/laravel-5-boilerplate/blob/master/resources/views/includes/partials/messages.blade.php" target="_blank">messages.blade.php</a> file is included after the body of all master app layouts in this project, and takes care of displaying any errors from a session, validation, etc using bootstrap alert boxes.</p>
+								<p>The <a href="https://github.com/rappasoft/laravel-boilerplate/blob/master/resources/views/includes/partials/messages.blade.php" target="_blank">messages.blade.php</a> file is included after the body of all master app layouts in this project, and takes care of displaying any errors from a session, validation, etc using bootstrap alert boxes.</p>
 
 								<p>If not a validation error, or message bag error, then the following session variables are supported:</p>
 
@@ -1010,7 +1010,7 @@ if (mix.inProduction() || process.env.npm_lifecycle_event !== 'hot') {
 
 								<p>We use this approach to make it easy to output buttons for each resource without having duplicate markup in multiple places, plus it takes care of the entity ID's and other stuff, such as converting all <strong>delete</strong> buttons for links that trigger a form instead of a form themselves. (This uses a method included in the global javascript plugin file.)</p>
 
-								<p>For example the buttons to the right of the users table in the backend, are generated in <a href="https://github.com/rappasoft/laravel-5-boilerplate/blob/master/app/Models/Auth/Traits/Attribute/UserAttribute.php#L249" target="_blank">this trait</a>.</p>
+								<p>For example the buttons to the right of the users table in the backend, are generated in <a href="https://github.com/rappasoft/laravel-boilerplate/blob/master/app/Models/Auth/Traits/Attribute/UserAttribute.php#L249" target="_blank">this trait</a>.</p>
 
 								<div class="code-block">
                                         <pre><code class="language-php">public function getShowButtonAttribute()
@@ -1052,7 +1052,7 @@ if (mix.inProduction() || process.env.npm_lifecycle_event !== 'hot') {
 &lt;/a&gt;</code></pre>
 								</div><!--//code-block-->
 
-								<p>Because of <a href="https://github.com/rappasoft/laravel-5-boilerplate/blob/master/resources/assets/js/plugins.js#L11" target="_blank">this function</a>, all <strong>data-method="delete"</strong> property get a form injected inside them that calls a DELETE route, it also takes care of popping up an "are you sure you want to delete?" alert box before resuming.</p>
+								<p>Because of <a href="https://github.com/rappasoft/laravel-boilerplate/blob/master/resources/assets/js/plugins.js#L11" target="_blank">this function</a>, all <strong>data-method="delete"</strong> property get a form injected inside them that calls a DELETE route, it also takes care of popping up an "are you sure you want to delete?" alert box before resuming.</p>
 
 								<p><strong>Note:</strong> The other data-* methods on the link take care of injecting the appropriate language into the sweetalert alert box that pops up which looks like this:</p>
 
@@ -1140,7 +1140,7 @@ if (mix.inProduction() || process.env.npm_lifecycle_event !== 'hot') {
 								<p>When pushing your app to production, you should make sure you run the following:</p><br/>
 
 								<h4>yarn prod</h4>
-								<p>Compress all of you assets into a single file specified in <a href="https://github.com/rappasoft/laravel-5-boilerplate/blob/master/webpack.mix.js" target="_blank">webpack.mix.js.</a></p><br/>
+								<p>Compress all of you assets into a single file specified in <a href="https://github.com/rappasoft/laravel-boilerplate/blob/master/webpack.mix.js" target="_blank">webpack.mix.js.</a></p><br/>
 
 								<h4><a href="https://laravel.com/docs/master/configuration#configuration-caching" target="_blank">Config Caching</a> php artisan config:cache</h4>
 								<p>Caches all of your configuration files into a single file.</p><br/>
@@ -1248,7 +1248,7 @@ if (mix.inProduction() || process.env.npm_lifecycle_event !== 'hot') {
 		<!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
 		<small class="copyright">Designed with <i class="fa fa-heart"></i> by <a href="http://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a> for developers.</small>
 
-		<small class="copyright">Created by <a href="http://www.rappasoft.com" target="_blank">Anthony Rappa</a> and made perfect by an <a href="https://github.com/rappasoft/laravel-5-boilerplate/graphs/contributors" target="_blank">amazing community of people.</a></small>
+		<small class="copyright">Created by <a href="http://www.rappasoft.com" target="_blank">Anthony Rappa</a> and made perfect by an <a href="https://github.com/rappasoft/laravel-boilerplate/graphs/contributors" target="_blank">amazing community of people.</a></small>
 
 	</div><!--//container-->
 </footer><!--//footer-->
