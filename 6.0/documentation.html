@@ -27,7 +27,6 @@
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
-
 </head>
 
 <body class="body-pink">
@@ -53,7 +52,7 @@
 		<div class="container">
 			<div id="doc-header" class="doc-header text-center">
 				<h1 class="doc-title"><span aria-hidden="true" class="icon icon_puzzle_alt"></span> Documentation</h1>
-				<div class="meta"><i class="fa fa-clock-o"></i> Last updated: September 14th, 2018</div>
+				<div class="meta"><i class="fa fa-clock-o"></i> Last updated: September 8th, 2019</div>
 			</div><!--//doc-header-->
 			<div class="doc-body">
 				<div class="doc-content">
@@ -110,13 +109,15 @@
 						<section id="exceptions" class="doc-section">
 							<h2 class="section-title">Exceptions</h2>
 							<div class="section-block">
-								<p>Besides the default PHP Exception class, there is one custom exception that gets thrown called <strong>GeneralException</strong>.</p>
+								<p>Besides the default PHP Exception class, there are two custom exception that can get thrown called <strong>GeneralException</strong> and <strong>ReportableException</strong>.</p>
 
-								<p>This exception does nothing special except act as a way to change the default exception functionality when calling it.</p>
+								<p>These exceptions do nothing special except act as a way to change the default exception functionality when calling it.</p>
+
+								<p><strong>Note:</strong> ReportableException will get logged as GeneralException will not.</p>
 
 								<p>Any custom exceptions live in the <strong>app\Exceptions</strong> directory.</p>
 
-								<p>Anytime you throw this exception, it will not display a "Whoops" error. Instead, it will take the error into a session variable and redirect the user to the previous page and display the message in a bootstrap danger alert box.</p>
+								<p>Anytime you throw these exception, it will not display a "Whoops" error. Instead, it will take the error into a session variable and redirect the user to the previous page and display the message in a bootstrap danger alert box.</p>
 
 								<p>If a regular PHP Exception is thrown, it will still get caught and the default functionality will takeover.</p>
 
@@ -151,7 +152,7 @@
 									<li>The <strong>config\breadcrumbs.php</strong> file which tells the system which view file to use for the rendering.</li>
 									<li>The <strong>views\backend\includes\partials\breadcrumbs.blade.php</strong> file which renders the links.</li>
 									<li><a
-											href="https://github.com/rappasoft/laravel-boilerplate/blob/master/resources/views/backend/layouts/app.blade.php#L34" target="_blank">The call</a> to render the breadcrumbs.</li>
+											href="https://github.com/rappasoft/laravel-boilerplate/blob/master/resources/views/backend/layouts/app.blade.php#L58" target="_blank">The call</a> to render the breadcrumbs.</li>
 									<li>The breadcrumb files located in <strong>routes/breadcrumbs</strong>.</li>
 									<li>The <strong>resources/views/backend/includes/partials/breadcrumbs.php</strong> file that the plugin looks for to render the links.</li>
 								</ul>
@@ -260,13 +261,6 @@
 									<li>All controller methods use injected <a href="#requests">Request Classes</a> to both validate and act as a second security check after the middleware.</li>
 									<li>All database logic is extracted out to <a href="#repositories">Repositories</a>.</li>
 									<li>Controllers are only comprised of CRUD methods, any other methods have been extracted to other controllers for cleanliness.</li>
-									<li>Any data table has its own dedicated controller.</li>
-									<li>Any data being bound or returned to views are using Laravel <a
-											href="#magic-methods">magic</a> with() method just like elsewhere in the application.
-										<ul>
-											<li>Example: <strong>withUser($user)</strong> is converted to <strong>with('user', $user)</strong></li>
-										</ul>
-									</li>
 								</ul>
 							</div><!--//section-block-->
 						</section><!--//doc-section-->
@@ -274,11 +268,14 @@
 						<section id="middleware" class="doc-section">
 							<h2 class="section-title">Middleware</h2>
 							<div class="section-block">
-								<p>Laravel Boilerplate ships with 2 additional middleware out of the box.</p>
+								<p>Laravel Boilerplate ships with 5 additional middleware out of the box.</p>
 
 								<ul>
 									<li><a class="scrollto" href="#localization-middleware">LocaleMiddleware</a></li>
 									<li><a class="scrollto" href="#password-expires">PasswordExpires</a></li>
+									<li><a class="scrollto" href="#read-only-mode">CheckForReadOnlyMode</a></li>
+									<li><a class="scrollto" href="#to-be-logged-out">ToBeLoggedOut</a></li>
+									<li><a class="scrollto" href="#secure-headers">SecureHeaders</a></li>
 								</ul>
 
 								<p>There is also one extra middleware group:</p>
@@ -308,6 +305,24 @@
 									<p>The password expires middleware forces the user to change their password after X number of days if specified in the access config file's password_expires_days property. You can disable it by setting it to false.</p>
 								</div><!--//section-block-->
 
+								<div id="read-only-mode" class="section-block">
+									<h3 class="block-title">CheckForReadOnlyMode</h3>
+
+									<p>This middleware is triggered by the env item <strong>APP_READ_ONLY</strong> which will disable any POST requests except /login, which will put the application into a demo mode that people can you but not alter data.</p>
+								</div><!--//section-block-->
+
+								<div id="to-be-logged-out" class="section-block">
+									<h3 class="block-title">ToBeLoggedOut</h3>
+
+									<p>This middleware checks the <strong>to_be_logged_out</strong> property on the user, and if enabled invalidates the user session and logs them out.</p>
+								</div><!--//section-block-->
+
+								<div id="secure-headers" class="section-block">
+									<h3 class="block-title">SecureHeaders</h3>
+
+									<p>This middleware is disabled by default in the Kernel. This middleware enables headers specified by <a href="https://securityheaders.com/" target="_blank">https://securityheaders.com/</a></p>
+								</div><!--//section-block-->
+
 								<div id="middleware-groups" class="section-block">
 									<h3 class="block-title">Middleware Groups</h3>
 									<p>Laravel Boilerplate currently ships with one additional middleware group called <strong>admin</strong>.</p>
@@ -334,110 +349,7 @@
 
 								<p>App requests are stored in the <strong>app\Http\Request</strong> folder and their namespaces match the folder structure.</p>
 
-								<div id="example-request" class="section-block">
-									<h3 class="block-title">Example Request</h3>
-
-									<p>We are going to look at the <strong>store</strong> method of the <strong>app\Http\Controllers\Backend\Auth\User\UserController</strong> to see what's going on.</p>
-
-									<div class="code-block">
-                                            <pre><code class="language-php">public function store(StoreUserRequest $request)
-{
-    $this->userRepository->create($request->only(
-        'first_name',
-        'last_name',
-        'email',
-        'password',
-        'timezone',
-        'active',
-        'confirmed',
-        'confirmation_email',
-        'roles',
-        'permissions'
-    ));
-
-    return redirect()->route('admin.auth.user.index')->withFlashSuccess(__('alerts.backend.users.created'));
-}</code></pre>
-									</div><!--//code-block-->
-
-									<p>Disregard what's inside the method and instead look at the parameter list.</p>
-
-									<p>The StoreUserRequest is being injected to the controller, you do not have to do anything as it is parsed by Laravel automatically, and before the code inside the method even runs.</p>
-
-									<p>The request itself looks like this:</p>
-
-									<div class="code-block">
-                                            <pre><code class="language-php">class StoreUserRequest extends FormRequest
-{
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return $this->user()->isAdmin();
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
-    {
-        return [
-            'first_name'     => 'required|max:191',
-            'last_name'  => 'required|max:191',
-            'email'    => ['required', 'email', 'max:191', Rule::unique('users')],
-            'timezone' => 'required|max:191',
-            'password' => 'required|min:6|confirmed',
-            'roles' => 'required|array',
-        ];
-    }
-}</code></pre>
-									</div><!--//code-block-->
-
-									<p>As you can see it does two things:</p>
-
-									<ul>
-										<li>It make sure the user is an administrator.</li>
-										<li>It validates the incoming request.</li>
-									</ul>
-
-									<p>If the authorization fails the user will be redirected back with a message stating they do not have the required permissions.</p>
-
-									<p>If the validation fails the default Laravel functionality takes over which is:</p>
-
-									<p><em>
-										"If validation fails, a redirect response will be generated to send the user back to their previous location. The errors will also be flashed to the session so they are available for display. If the request was an AJAX request, a HTTP response with a 422 status code will be returned to the user including a JSON representation of the validation errors."
-									</em></p>
-								</div><!--//section-block-->
-
-								<p>Any controller method that needs to validate data or permission should use a request class for an extra layer of security.</p>
-
-								<hr />
-
-								<p><strong>Note:</strong> This project uses more general permissions for CRUD operations, meaning the default requests for a <strong>manage-users</strong> permission would be:</p>
-
-								<ul>
-									<li>ManageUserRequest - for any requests that do not have validation but want to assure the user can <strong>manage-users</strong></li>
-									<li>StoreUserRequest - for creating a user and assuring the user can <strong>manage-users</strong></li>
-									<li>UpdateUserRequest - for updating a user and assuring the user can <strong>manage-users</strong></li>
-								</ul>
-
-								<p>If you were to get more granular, and have separate permissions for all stages of CRUD, you may have controller methods that are injecting the following request classes:</p>
-
-								<ul>
-									<li>ViewUserRequest - auth()->can('view-users')</li>
-									<li>StoreUserRequest - auth()->can('store-users')</li>
-									<li>EditUserRequest - auth()->can('edit-users')</li>
-									<li>UpdateUserRequest - auth()->can('update-users')</li>
-									<li>DeleteUserRequest - auth()->can('delete-users')</li>
-								</ul>
-
-								<hr />
-
-								<p>Learn more about Laravel request classes <a href="https://laravel.com/docs/5.3/validation#form-request-validation" target="_blank">here</a>.</p>
+								<p>Learn more about Laravel request classes <a href="https://laravel.com/docs/master/validation#form-request-validation" target="_blank">here</a>.</p>
 							</div><!--//section-block-->
 						</section><!--//doc-section-->
 
@@ -448,22 +360,10 @@
 
 								<p>The folder structure of the Model indicates its namespace as always.</p>
 
-								<p>The majority of the models share the same characteristics:</p>
-
-								<ul>
-									<li>The <strong>$table</strong> property houses the table name, whether static or pulling from a config file.</li>
-									<li>The <strong>$fillable</strong> property defines the columns that can be mass assigned. This is preferred over guarded as it is more specific.</li>
-									<li>Some models have a <strong>$hidden</strong> property to hide certain information from being displayed, in such ways as in an API.</li>
-									<li>Some models have a <strong>$dates</strong> property to cast certain columns as Carbon objects, such as when using the Laravel SoftDeletes trait.</li>
-									<li>Many models have traits that extend or include other functionality, see below.</li>
-								</ul>
-
 								<div id="model-attributes" class="section-block">
 									<h3 class="block-title">Attributes</h3>
 
 									<p>If a model has any custom attributes, they are held as traits in an Attributes folder of the current model directory.</p>
-
-									<p>This is also where the system builds the action buttons for each object type, if applicable. <a href="#action-buttons">See Action Buttons</a>.
 								</div><!--//section-block-->
 
 								<div id="model-relationships" class="section-block">
@@ -477,6 +377,12 @@
 
 									<p>If a model has any scopes, they are held as traits in an Scopes folder of the current model directory.</p>
 								</div><!--//section-block-->
+
+								<div id="model-methods" class="section-block">
+									<h3 class="block-title">Methods</h3>
+
+									<p>If a model has any methods, they are held as traits in a Method folder of the current model directory.</p>
+								</div><!--//section-block-->
 							</div><!--//section-block-->
 						</section><!--//doc-section-->
 
@@ -488,6 +394,7 @@
 								<ul>
 									<li>UserNeedsConfirmation - Send when a user registers and email confirmation is on.</li>
 									<li>UserNeedsPasswordReset- Send when the user requests a password reset.</li>
+									<li>UserAccountActive s- Send when the users account is confirmed by an admin.</li>
 								</ul>
 
 								<p>All notifications are stored in the <strong>app\Notifications</strong> directory by default.</p>
@@ -504,10 +411,10 @@
 								<ul>
 									<li><a class="scrollto" href="#AppServiceProvider">AppServiceProvider</a> - Modified</li>
 									<li>AuthServiceProvider - Untouched</li>
-									<li><a class="scrollto" href="#BladeServiceProvider">BladeServiceProvider</a> - New</li>
 									<li>BroadcastServiceProvider - Untouched</li>
 									<li><a class="scrollto" href="#ComposerServiceProvider">ComposerServiceProvider</a> - New</li>
 									<li><a class="scrollto" href="#EventServiceProvider">EventServiceProvider</a> - Modified</li>
+									<li><a class="scrollto" href="#HelperServiceProvider">HelperServiceProvider</a> - New</li>
 									<li><a class="scrollto" href="#ObserverServiceProvider">ObserverServiceProvider</a> - New</li>
 									<li><a class="scrollto" href="#RouteServiceProvider">RouteServiceProvider</a> - Modified</li>
 								</ul>
@@ -522,18 +429,7 @@
 										<li>There is a conditional to check to see if the app is in production if
 											you need to do anything specific such as force https.</li>
 										<li>The register method has a conditional for local development where you can register service providers that you only need for local development, since there is no point in registering them in a production environment.</li>
-									</ul>
-								</div><!--//section-block-->
-
-								<div id="BladeServiceProvider" class="section-block">
-									<h3 class="block-title">BladeServiceProvider</h3>
-
-									<p>The BladeServiceProvider registers any custom blade directives you want to be able to use in your blade files.</p>
-
-									<p>Laravel Boilerplate ships with 1 non-access related blade extensions:</p>
-
-									<ul>
-										<li>A <strong>@langrtl</strong> directive, which checks to see if the current language in the session wants Right-to-Left support so you can update things accordingly.</li>
+										<li>Registers any blade extensions.</li>
 									</ul>
 								</div><!--//section-block-->
 
@@ -547,6 +443,12 @@
 									<h3 class="block-title">EventServiceProvider</h3>
 
 									<p>The EventServiceProvider is extended to use the <strong>$subscribers</strong> property to register the event listeners for the system.</p>
+								</div><!--//section-block-->
+
+								<div id="HelperServiceProvider" class="section-block">
+									<h3 class="block-title">HelperServiceProvider</h3>
+
+									<p>The HelperServiceProvider registers any helper classes in the global helper directory.</p>
 								</div><!--//section-block-->
 
 								<div id="ObserverServiceProvider" class="section-block">
@@ -565,6 +467,8 @@
 									<p>Since most of the controller/routes use Laravels <a href="https://laravel.com/docs/master/routing#route-model-binding" target="_blank">Route/Model</a> Binding, there is one instance where we need to specify a binding.</p>
 
 									<p>We specify this binding for use in <a href="https://github.com/rappasoft/laravel-boilerplate/blob/master/routes/Backend/Access.php#L56" target="_blank">deleting/restoring</a> a user, because the binding needs to know to have to check for deleted users as well. If you get rid of this and just use the default user binding, it will fail because it's not checking for a user id that has a non-null deleted_at timestamp.</p>
+
+									<p>We register the <strong>impersonate</strong> package routes.</p>
 								</div><!--//section-block-->
 							</div><!--//section-block-->
 						</section><!--//doc-section-->
@@ -582,7 +486,7 @@
 
 								<ul>
 									<li>Repositories extend a base repository class to get included helper methods</strong>.</li>
-									<li>If you extend the base repository you must have a method called <strong>model()</strong> that returns the model that you will be working with.</li>
+									<li>If you extend the base repository you must inject the current model into the constructor.</li>
 								</ul>
 							</div><!--//section-block-->
 						</section><!--//doc-section-->
@@ -604,12 +508,12 @@
 									<li>Option for Manual Account Confirmation by Admin</li>
 									<li>Login Throttling</li>
 									<li>Enable/Disable Registration</li>
-									<li>Force Single Session</li>
+									<li>Single Login (Logout all other devices)</li>
 									<li>Clear User Session</li>
-									<li>Password History</li>
+									<li>Configurable Password History</li>
 									<li>Password Expiration</li>
-									<li>Password Exposed</li>
-									<li>Administrator Management
+									<li>
+										Administrator Management
 										<ul>
 											<li>User Index</li>
 											<li>Activate/Deactivate Users</li>
@@ -618,7 +522,8 @@
 											<li>Change Users Password</li>
 											<li>Create/Manage Roles</li>
 											<li>Manage Users Roles/Permissions</li>
-											<li>"Login As" User</li>
+											<li>Impersonate User</li>
+											<li>Clear User Session</li>
 										</ul>
 									</li>
 								</ul>
@@ -632,100 +537,78 @@
 									<h3 class="block-title">Configuration</h3>
 
 									<div class="code-block">
-                                            <pre><code class="language-php">/*
- * Application captcha specific settings
- */
-'captcha' => [
+                                            <pre><code class="language-php"><?php
+
+return [
+    // Application captcha specific settings
+    'captcha' => [
+        // Whether the registration captcha is on or off
+        'contact' => env('CONTACT_CAPTCHA_STATUS', false),
+        'registration' => env('REGISTRATION_CAPTCHA_STATUS', false),
+        'login' => env('LOGIN_CAPTCHA_STATUS', false),
+    ],
+
+    // Whether or not registration is enabled
+    'registration' => env('ENABLE_REGISTRATION', true),
+
+    // Configurations for the user
+    'users' => [
+        // Whether or not the user has to confirm their email when signing up
+        'confirm_email' => env('CONFIRM_EMAIL', false),
+
+        // Whether or not the users email can be changed on the edit profile screen
+        'change_email' => env('CHANGE_EMAIL', false),
+
+        // The name of the super administrator role
+        'admin_role' => 'administrator',
+
+        // The default role all new registered users get added to
+        'default_role' => 'user',
+
+        /*
+         * Whether or not new users need to be approved by an administrator before logging in
+         * If this is set to true, then confirm_email is not in effect
+         */
+        'requires_approval' => env('REQUIRES_APPROVAL', false),
+
+        // Login username to be used by the controller.
+        'username' => 'email',
+
+        /*
+         * When active, a user can only have one session active at a time
+         * That is all other sessions for that user will be deleted when they log in
+         * (They can only be logged into one place at a time, all others will be logged out)
+         * AuthenticateSession middleware must be enabled
+         */
+        'single_login' => env('SINGLE_LOGIN', true),
+
+        /*
+         * How many days before users have to change their passwords
+         * false is off
+         */
+        'password_expires_days' => env('PASSWORD_EXPIRES_DAYS', 30),
+
+        /*
+         * The number of most recent previous passwords to check against when changing/resetting a password
+         * false is off which doesn't log password changes or check against them
+         */
+        'password_history' => env('PASSWORD_HISTORY', 3),
+    ],
+
+    // Configuration for roles
+    'roles' => [
+        // Whether a role must contain a permission or can be used standalone as a label
+        'role_must_contain_permission' => true,
+    ],
+
     /*
-     * Whether the registration captcha is on or off
+     * Socialite session variable name
+     * Contains the name of the currently logged in provider in the users session
+     * Makes it so social logins can not change passwords, etc.
      */
-    'registration' => env('REGISTRATION_CAPTCHA_STATUS', false),
-],
-
-/*
- * Whether or not registration is enabled
- */
-'registration' => env('ENABLE_REGISTRATION', true),
-
-/*
- * Table names for access tables
- */
-'table_names' => [
-    'users' => 'users',
-],
-
-/*
- * Configurations for the user
- */
-'users' => [
-    /*
-     * Whether or not the user has to confirm their email when signing up
-     */
-    'confirm_email' => env('CONFIRM_EMAIL', false),
-
-    /*
-     * Whether or not the users email can be changed on the edit profile screen
-     */
-    'change_email' => env('CHANGE_EMAIL', false),
-
-    /*
-     * The name of the super administrator role
-     */
-    'admin_role' => 'administrator',
-
-    /*
-     * The default role all new registered users get added to
-     */
-    'default_role' => 'user',
-
-    /*
-     * Whether or not new users need to be approved by an administrator before logging in
-     * If this is set to true, then confirm_email is not in effect
-     */
-    'requires_approval' => env('REQUIRES_APPROVAL', false),
-
-    /*
-     * Login username to be used by the controller.
-     */
-    'username' => 'email',
-
-    /*
-     * Session Database Driver Only
-     * When active, a user can only have one session active at a time
-     * That is all other sessions for that user will be deleted when they log in
-     * (They can only be logged into one place at a time, all others will be logged out)
-     */
-    'single_login' => true,
-
-    /*
-     * How many days before users have to change their passwords
-     * false is off
-     */
-    'password_expires_days' => env('PASSWORD_EXPIRES_DAYS', 30),
-
-	/*
-	 * The number of most recent previous passwords to check against when changing/resetting a password
-	 * false is off which doesn't log password changes or check against them
-	 */
-	'password_history' => env('PASSWORD_HISTORY', 3),
-],
-
-/*
-* Configuration for roles
-*/
-'roles' => [
-    /*
-     * Whether a role must contain a permission or can be used standalone as a label
-     */
-    'role_must_contain_permission' => true,
-],
-
-/*
- * Socialite session variable name
- * Contains the name of the currently logged in provider in the users session
- * Makes it so social logins can not change passwords, etc.
- */
-'socialite_session_name' => 'socialite_provider',</code></pre>
+    'socialite_session_name' => 'socialite_provider',
+];
+</code></pre>
 									</div><!--//code-block-->
 								</div><!--//section-block-->
 
@@ -740,7 +623,7 @@
 						<section id="blade-extensions" class="doc-section">
 							<h2 class="section-title">Blade Extensions</h2>
 							<div class="section-block">
-								<p>See <a class="scrollto" href="#BladeServiceProvider">BladeServiceProvider</a>.</p>
+								<p>Custom Blade Directives are registered in the <a class="scrollto" href="#AppServiceProvider">AppServiceProvider</a>.</p>
 							</div><!--//section-block-->
 						</section><!--//doc-section-->
 
@@ -770,53 +653,9 @@
 								<div id="helper-classes"  class="section-block">
 									<h3 class="block-title">Helper Classes</h3>
 
-									<p>There are a few misc. helper classes we have written that we couldn't find a good place for, and didn't want messy controllers with so we extracted them out as <strong>Helper</strong> classes.</p>
+									<p>Helper classes are stored in app\Helpers.</p>
 
-									<p>They are located in the <strong>app\Helpers</strong> directory.</p>
-
-									<p>Any helpers that were deemed useful globally throughtout the application have folders in the root, and helpers that were to specific to a section have <strong>Frontend</strong> or <strong>Backend</strong> folders like many other places throughout the file structure.</p>
-								</div><!--//section-block-->
-
-								<div id="helper-globals"  class="section-block">
-									<h3 class="block-title">Helper Globals</h3>
-
-									<p>There is an <strong>app\helpers.php</strong> file which is autoloaded with composer that registers a few global functions for your convenience.</p>
-
-									<hr />
-
-									<h4>app_name()</h4>
-
-									<div class="code-block">
-										<pre><code class="language-php">{{ app_name() }} returns the config app.name value.</code></pre>
-									</div><!--//code-block-->
-
-									<h4>gravatar()</h4>
-									<p>Global function for the Gravatar:: facade.</p>
-
-									<div class="code-block">
-										<pre><code class="language-php">return gravatar()->get($user->email, ['size' => 50]);</code></pre>
-									</div><!--//code-block-->
-
-									<h4>include_route_files($folder)</h4>
-									<p>Loops through a folder and requires all PHP files - <a class="scrollto" href="#routes">See Routes</a>.</p>
-
-									<h4>home_route()</h4>
-									<p>Gets the home route of the user based off of their authentication level.</p>
-
-									<h4>style()</h4>
-									<p>Include an HTML style call.</p>
-
-									<h4>script()</h4>
-									<p>Include an HTML javascript call.</p>
-
-									<h4>form_cancel()</h4>
-									<p>Creates a styled form cancel button that is used throughout.</p>
-
-									<h4>form_submit()</h4>
-									<p>Creates a styles form submit button that is used throughout.</p>
-
-									<h4>camelcase_to_word()</h4>
-									<p>Converts camelCase strings to their word equivalent.</p>
+									<p>And helpers stored in app\Helpers\Global are autoloaded as global functions from HelperServiceProvider.</p>
 								</div><!--//section-block-->
 							</div><!--//section-block-->
 						</section><!--//doc-section-->
@@ -852,9 +691,12 @@
  |
  */
 
-mix.setPublicPath('public');
-
-mix.sass('resources/sass/frontend/app.scss', 'css/frontend.css')
+mix.setPublicPath('public')
+    .setResourceRoot('../') // Turns assets paths in css relative to css file
+    // .options({
+    //     processCssUrls: false,
+    // })
+    .sass('resources/sass/frontend/app.scss', 'css/frontend.css')
     .sass('resources/sass/backend/app.scss', 'css/backend.css')
     .js('resources/js/frontend/app.js', 'js/frontend.js')
     .js([
@@ -863,20 +705,31 @@ mix.sass('resources/sass/frontend/app.scss', 'css/frontend.css')
         'resources/js/backend/after.js'
     ], 'js/backend.js')
     .extract([
+        // Extract packages from node_modules to vendor.js
         'jquery',
         'bootstrap',
-        'popper.js/dist/umd/popper',
+        'popper.js',
         'axios',
         'sweetalert2',
-        'lodash',
-        '@fortawesome/fontawesome-svg-core',
-        '@fortawesome/free-brands-svg-icons',
-        '@fortawesome/free-regular-svg-icons',
-        '@fortawesome/free-solid-svg-icons'
-    ]);
+        'lodash'
+    ])
+    .sourceMaps();
 
-if (mix.inProduction() || process.env.npm_lifecycle_event !== 'hot') {
-    mix.version();
+if (mix.inProduction()) {
+    mix.version()
+        .options({
+            // Optimize JS minification process
+            terser: {
+                cache: true,
+                parallel: true,
+                sourceMap: true
+            }
+        });
+} else {
+    // Uses inline source-maps on development
+    mix.webpackConfig({
+        devtool: 'inline-source-map'
+    });
 }
 </code></pre>
 									</div><!--//code-block-->
@@ -933,13 +786,7 @@ if (mix.inProduction() || process.env.npm_lifecycle_event !== 'hot') {
 						<section id="testing" class="doc-section">
 							<h2 class="section-title">Testing</h2>
 							<div class="section-block">
-								<p>The test suite is currently comprised of over 100 tests and 500 assertions to test all of the sections in this documentation.</p>
-
-								<p>We will not go into detail here since they change so often, but with a fresh installation everything should pass if you have the right configurations.</p>
-
 								<p>To run the tests run <strong>phpunit</strong> from the command line in the root of the project.</p>
-
-								<p><strong>Note:</strong> You will need to set up mail for all the tests to pass. I suggest a <a href="https://mailtrap.io" target="_blank">Mailtrap</a> account for testing.</p>
 							</div><!--//section-block-->
 						</section><!--//doc-section-->
 
@@ -1003,135 +850,29 @@ if (mix.inProduction() || process.env.npm_lifecycle_event !== 'hot') {
 								<p>Both methods work, but I think the magic makes it more elegant so I use that throughout.</p>
 							</div><!--//section-block-->
 
-							<div id="action-buttons" class="section-block">
-								<h3 class="block-title">Action Buttons</h3>
-
-								<p>Anywhere throughout the system that there is a table that allows CRUD operations, with associated buttons, the buttons (called <strong>action buttons</strong>) are held within a trait on the model.</p>
-
-								<p>We use this approach to make it easy to output buttons for each resource without having duplicate markup in multiple places, plus it takes care of the entity ID's and other stuff, such as converting all <strong>delete</strong> buttons for links that trigger a form instead of a form themselves. (This uses a method included in the global javascript plugin file.)</p>
-
-								<p>For example the buttons to the right of the users table in the backend, are generated in <a href="https://github.com/rappasoft/laravel-boilerplate/blob/master/app/Models/Auth/Traits/Attribute/UserAttribute.php#L249" target="_blank">this trait</a>.</p>
-
-								<div class="code-block">
-                                        <pre><code class="language-php">public function getShowButtonAttribute()
-{
-    return '&lt;a href="' . route('admin.auth.user.show', $this) . '" class="btn btn-xs btn-info">&lt;i class="fa fa-search" data-toggle="tooltip" data-placement="top" title="' . trans('buttons.general.crud.view') . '">&lt;/i&gt;&lt;/a&gt; ';
-}</code></pre>
-								</div><!--//code-block-->
-
-								<p>This outputs the <strong>show</strong> button for each user row in the table with their respective ID and looks like this <img src="../assets/images/attributes/show.png" />.</p>
-
-								<p>On interesting button to look at is the delete button:</p>
-
-								<div class="code-block">
-                                        <pre><code class="language-php">public function getDeleteButtonAttribute()
-{
-    if ($this->id != auth()->id()) {
-        return '&lt;a href="' . route('admin.auth.user.destroy', $this) . '"
-             data-method="delete"
-             data-trans-button-cancel="' . trans('buttons.general.cancel') . '"
-             data-trans-button-confirm="' . trans('buttons.general.crud.delete') . '"
-             data-trans-title="' . trans('strings.backend.general.are_you_sure') . '"
-             class="btn btn-xs btn-danger">&lt;i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="' . trans('buttons.general.crud.delete') . '"&gt;&lt;/i&gt;&lt;/a&gt; ';
-    }
-
-    return '';
-}</code></pre>
-								</div><!--//code-block-->
-
-								<p>Ignoring the if statement for this example, you can see that the delete button is actually a link. But that's insecure, isn't it? Actually no, take note of the <strong>data-method="delete"</strong> property of the link.</p>
-
-								<p>If you look at the source of the delete button you will see this:</p>
-
-								<div class="code-block">
-                                        <pre><code class="language-markup">&lt;a data-method="delete" data-trans-button-cancel="Cancel" data-trans-button-confirm="Delete" data-trans-title="Are you sure?" class="btn btn-xs btn-danger" style="cursor:pointer;" onclick="$(this).find(&quot;form&quot;).submit();">&lt;i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"&gt;&lt;/i&gt;
-&lt;form action="http://l5boilerplate.dev/admin/access/user/1" method="POST" name="delete_item" style="display:none"&gt;
-   &lt;input type="hidden" name="_method" value="delete"&gt;
-   &lt;input type="hidden" name="_token" value="YOUR_CSRF_TOKEN"&gt;
-&lt;/form&gt;
-&lt;/a&gt;</code></pre>
-								</div><!--//code-block-->
-
-								<p>Because of <a href="https://github.com/rappasoft/laravel-boilerplate/blob/master/resources/assets/js/plugins.js#L11" target="_blank">this function</a>, all <strong>data-method="delete"</strong> property get a form injected inside them that calls a DELETE route, it also takes care of popping up an "are you sure you want to delete?" alert box before resuming.</p>
-
-								<p><strong>Note:</strong> The other data-* methods on the link take care of injecting the appropriate language into the sweetalert alert box that pops up which looks like this:</p>
-
-								<div class="screenshot-holder" style="max-width:300px">
-									<a href="../assets/images/attributes/delete.png" data-title="Delete Alert Box" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/attributes/delete.png" alt="screenshot"></a>
-									<a class="mask hoverZoomLink" href="../assets/images/attributes/delete.png" data-title="Delete Alert Box" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
-								</div><br/>
-
-								<p><strong>Finally</strong> each attribute trait has a last method called <strong>getActionButtonsAttribute()</strong> which concatinates all of the button methods together and displays all of the buttons at once like:</p>
-
-								<div class="code-block">
-									<pre><code class="language-php">$user->action_buttons</code></pre>
-								</div><!--//code-block-->
-
-								<p>Displays: (Actual look may vary between versions)</p>
-
-								<p><img src="../assets/images/attributes/action_buttons.png" /></p>
-
-								<p><strong>Note:</strong> The <strong>getActionButtonsAttribute()</strong> method is another example of <a href="https://laravel.com/docs/master/eloquent-mutators#defining-an-accessor" target="_blank">Laravel magic</a>.</p>
-							</div><!--//section-block-->
-
 							<div id="socialite" class="section-block">
 								<h3 class="block-title">Socialite</h3>
 
-								<p>To configure socialite, add your credentials to your .env file. The redirects must follow the convention <strong>http://mysite.com/login/SERVICE</strong>. Available services are <strong>github, facebook, linkedin, bitbucket, twitter, and google</strong>. The links on the login page are generated based on which credentials are provided in the .env file.</p><br/>
-
-								<h4>BitBucket</h4>
-								<p>You must set permissions of your OAuth consumer to at least <strong>Account: Read</strong> and <strong>Repositories: Read</strong></p>
-
-								<p><strong>Also:</strong> In order for this option to work, <strong>email</strong> must be <strong>nullable</strong> on the <strong>users</strong> table, as well as the <strong>unique email table key</strong> removed. Do this at your own risk. There is no other option I know of for now.</p><br/>
-
-								<h4>GitHub</h4>
-								<p>No known quirks, should work as is.</p><br/>
-
-								<h4>Google</h4>
-								<p>If you are getting an <strong>Access Not Configured</strong> error message:</p>
-
-								<p>Activate the <strong>Google+ API</strong> from the Google Developers Console.</p><br/>
-
-								<h4>Facebook</h4>
-								<p><strong>For the Given URL is not allowed by the Application error message:</strong></p>
-
-								<ol>
-									<li>Go to basic settings for your app</li>
-									<li>Select Add Platform</li>
-									<li>Select Website</li>
-									<li>Put URL in the Site URL</li>
-								</ol><br/>
-
-								<h4>Linked In</h4>
-								<p><strong>r_basicprofile</strong> and <strong>r_emailaddress</strong> must be selected in <strong>Default Application Permissions</strong>.</p>
-
-								<p>The callback URL must be submitted under the <strong>OAuth 2.0</strong> section.</p><br/>
-
-								<h4>Twitter</h4>
-								<p>For Twitter to grab the user's email address for you application, it must be whitelisted as explained here: <a href="https://dev.twitter.com/rest/reference/get/account/verify_credentials" target="_blank">https://dev.twitter.com/rest/reference/get/account/verify_credentials</a></p><br/>
-
-								<h4>Other</h4>
-								<p>If you are getting a <strong>cURL error 60</strong> on localhost, follow <a href="http://stackoverflow.com/questions/28635295/laravel-socialite-testing-on-localhost-ssl-certificate-issue" target="_blank">these directions</a>.</p>
+								<p>To configure socialite, add your credentials to your .env file. The redirects must follow the convention <strong>http://mysite.com/login/SERVICE</strong>. Available services are <strong>github, facebook, linkedin, bitbucket, twitter, and google</strong>. The links on the login page are generated based on which credentials are provided in the .env file.</p>
 							</div><!--//section-block-->
 
 							<div id="troubleshooting" class="section-block">
 								<h3 class="block-title">Troubleshooting</h3>
 
-								<p>If for any reason something goes wrong, try each of the following:</p>
+								<p>If for any reason something goes wrong, try the following:</p>
 
-								<p>Delete the <strong>composer.lock</strong> file</p>
+								<p><strong>composer clear-all</strong> from the CLI</p>
 
-								<p>Run the <strong>dumpautoload</strong> command</p>
+								<p>This will:</p>
 
-								<div class="code-block">
-									<pre><code class="language-php">$ composer dumpautoload -o</code></pre>
-								</div><!--//code-block-->
-
-								<p>If the above fails to fix, and the command line is referencing errors in compiled.php, do the following:</p>
-
-								<p>Delete the <strong>storage/framework/compiled.php</strong> file</p>
-
-								<p>If all of the above don't work please <a href="https://github.com/rappasoft/Laravel-5-Boilerplate/issues" target="_blank">report here</a>.</p>
+								<ul>
+									<li>php artisan clear-compiled</li>
+						            <li>php artisan cache:clear</li>
+						            <li>php artisan route:clear</li>
+						            <li>php artisan view:clear</li>
+						            <li>php artisan config:clear</li>
+						            <li>composer dumpautoload -o</li>
+								</ul>
 							</div><!--//section-block-->
 
 							<div id="deployment" class="section-block">
@@ -1142,11 +883,14 @@ if (mix.inProduction() || process.env.npm_lifecycle_event !== 'hot') {
 								<h4>yarn prod</h4>
 								<p>Compress all of you assets into a single file specified in <a href="https://github.com/rappasoft/laravel-boilerplate/blob/master/webpack.mix.js" target="_blank">webpack.mix.js.</a></p><br/>
 
-								<h4><a href="https://laravel.com/docs/master/configuration#configuration-caching" target="_blank">Config Caching</a> php artisan config:cache</h4>
-								<p>Caches all of your configuration files into a single file.</p><br/>
+								<h4>composer cc</h4>
 
-								<h4><a href="https://laravel.com/docs/master/controllers#route-caching" target="_blank">Route Caching</a> php artisan route:cache</h4>
-								<p>If your application is exclusively using controller based routes, you should take advantage of Laravel's route cache. Using the route cache will drastically decrease the amount of time it takes to register all of your application's routes. In some cases, your route registration may even be up to 100x faster!</p>
+								<p>This will run the above clear-all command followed by the cache-all command:</p>
+
+								<ul>
+									<li>php artisan config:cache</li>
+									<li>php artisan route:cache</li>
+								</ul>
 							</div><!--//section-block-->
 						</section><!--//doc-section-->
 					</div><!--//content-inner-->
@@ -1161,79 +905,19 @@ if (mix.inProduction() || process.env.npm_lifecycle_event !== 'hot') {
 							<li><a class="scrollto" href="#composers">Composers</a></li>
 							<li><a class="scrollto" href="#routes">Routes</a></li>
 							<li><a class="scrollto" href="#controllers">Controllers</a></li>
-							<li>
-								<a class="scrollto" href="#middleware">Middleware</a>
-								<ul class="nav doc-sub-menu">
-									<li><a class="scrollto" href="#localization-middleware">LocaleMiddleware</a></li>
-									<li><a class="scrollto" href="#routeNeedsRole">Role</a></li>
-									<li><a class="scrollto" href="#routeNeedsPermission">Permission</a></li>
-									<li><a class="scrollto" href="#password-expires">PasswordExpires</a></li>
-									<li><a class="scrollto" href="#middleware-groups">Middleware Groups</a></li>
-								</ul><!--//nav-->
-							</li>
-							<li>
-								<a class="scrollto" href="#requests">Requests</a>
-								<ul class="nav doc-sub-menu">
-									<li><a class="scrollto" href="#example-request">Example Request</a></li>
-								</ul><!--//nav-->
-							</li>
-							<li>
-								<a class="scrollto" href="#models">Models</a>
-								<ul class="nav doc-sub-menu">
-									<li><a class="scrollto" href="#model-attributes">Attributes</a></li>
-									<li><a class="scrollto" href="#model-relationships">Relationships</a></li>
-									<li><a class="scrollto" href="#model-scopes">Scopes</a></li>
-								</ul><!--//nav-->
-							</li>
+							<li><a class="scrollto" href="#middleware">Middleware</a></li>
+							<li><a class="scrollto" href="#requests">Requests</a></li>
+							<li><a class="scrollto" href="#models">Models</a></li>
 							<li><a class="scrollto" href="#notifications">Notifications</a></li>
-							<li>
-								<a class="scrollto" href="#providers">Providers</a>
-								<ul class="nav doc-sub-menu">
-									<li><a class="scrollto" href="#AppServiceProvider">AppServiceProvider</a></li>
-									<li><a class="scrollto" href="#BladeServiceProvider">BladeServiceProvider</a></li>
-									<li><a class="scrollto" href="#ComposerServiceProvider">ComposerServiceProvider</a></li>
-									<li><a class="scrollto" href="#EventServiceProvider">EventServiceProvider</a></li>
-									<li><a class="scrollto" href="#RouteServiceProvider"> RouteServiceProvider</a></li>
-								</ul><!--//nav-->
-							</li>
+							<li><a class="scrollto" href="#providers">Providers</a></li>
 							<li><a class="scrollto" href="#repositories">Repositories</a></li>
-							<li>
-								<a class="scrollto" href="#access-control">Access Control</a>
-								<ul class="nav doc-sub-menu">
-									<li><a class="scrollto" href="#access-config">Configuration</a></li>
-									<li><a class="scrollto" href="#access-middleware">Middleware</a></li>
-								</ul><!--//nav-->
-							</li>
+							<li><a class="scrollto" href="#access-control">Access Control</a></li>
 							<li><a class="scrollto" href="#blade-extensions">Blade Extensions</a></li>
 							<li><a class="scrollto" href="#localization">Localization</a></li>
-							<li>
-								<a class="scrollto" href="#helpers">Helpers</a>
-								<ul class="nav doc-sub-menu">
-									<li><a class="scrollto" href="#helper-classes">Classes</a></li>
-									<li><a class="scrollto" href="#helper-globals">Globals</a></li>
-								</ul><!--//nav-->
-							</li>
-							<li>
-								<a class="scrollto" href="#resources">Resources</a>
-								<ul class="nav doc-sub-menu">
-									<li><a class="scrollto" href="#resources-mix">webpack.mix</a></li>
-									<li><a class="scrollto" href="#resources-assets">Assets</a></li>
-									<li><a class="scrollto" href="#resources-lang">Lang</a></li>
-									<li><a class="scrollto" href="#resources-views">Views</a></li>
-								</ul><!--//nav-->
-							</li>
+							<li><a class="scrollto" href="#helpers">Helpers</a></li>
+							<li><a class="scrollto" href="#resources">Resources</a></li>
 							<li><a class="scrollto" href="#testing">Testing</a></li>
-							<li>
-								<a class="scrollto" href="#misc">Misc.</a>
-								<ul class="nav doc-sub-menu">
-									<li><a class="scrollto" href="#flash-messages">Flash Messages</a></li>
-									<li><a class="scrollto" href="#magic-methods">Magic Methods</a></li>
-									<li><a class="scrollto" href="#action-buttons">Action Buttons</a></li>
-									<li><a class="scrollto" href="#socialite">Socialite</a></li>
-									<li><a class="scrollto" href="#troubleshooting">Troubleshooting</a></li>
-									<li><a class="scrollto" href="#deployment">Deployment</a></li>
-								</ul><!--//nav-->
-							</li>
+							<li><a class="scrollto" href="#misc">Misc.</a></li>
 						</ul><!--//doc-menu-->
 					</nav>
 				</div><!--//doc-sidebar-->

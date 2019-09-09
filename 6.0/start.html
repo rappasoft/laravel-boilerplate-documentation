@@ -53,7 +53,7 @@
 		<div class="container">
 			<div id="doc-header" class="doc-header text-center">
 				<h1 class="doc-title"><i class="icon fa fa-paper-plane"></i> Quick Start</h1>
-				<div class="meta"><i class="fa fa-clock-o"></i> Last updated: September 14th, 2018</div>
+				<div class="meta"><i class="fa fa-clock-o"></i> Last updated: September 8th, 2019</div>
 			</div><!--//doc-header-->
 			<div class="doc-body">
 				<div class="doc-content">
@@ -74,9 +74,10 @@
 											<li>Option for Manual Account Confirmation by Admin</li>
 											<li>Login Throttling</li>
 											<li>Enable/Disable Registration</li>
-											<li>Force Single Session</li>
+											<li>Single Login (Logout all other devices)</li>
 											<li>Clear User Session</li>
 											<li>Configurable Password History</li>
+											<li>Password Expiration</li>
 											<li>
 												Administrator Management
 												<ul>
@@ -87,8 +88,8 @@
 													<li>Change Users Password</li>
 													<li>Create/Manage Roles</li>
 													<li>Manage Users Roles/Permissions</li>
-													<li>"Login As" User</li>
-													<li>Kill User Session</li>
+													<li>Impersonate User</li>
+													<li>Clear User Session</li>
 												</ul>
 											</li>
 										</ul>
@@ -107,15 +108,16 @@
 									<li><a href="https://fontawesome.com/" target="_blank">Font Awesome 5</a></li>
 									<li>Global Messages/Exception Handling</li>
 									<li><a href="https://github.com/laravel/socialite" target="_blank">Socialite Integration</a></li>
-									<li><a href="https://github.com/letrunghieu/active" target="_blank">Active Menu</a></li>
 									<li><a href="https://github.com/ARCANEDEV/LogViewer" target="_blank">ARCANEDEV Log Viewer</A></li>
 									<li><a href="https://laravel-breadcrumbs.readthedocs.io/en/latest/index.html" target="_blank">Dynamic Breadcrumbs</a></li>
-									<li>Localization with RTL support in 15+ languages so far.</li>
+									<li>Localization with RTL support in 20+ languages so far.</li>
 									<li><a href="https://github.com/creativeorange/gravatar" target="_blank">Gravatar</a></li>
 									<li><a href="https://github.com/barryvdh/laravel-debugbar" target="_blank">Laravel Debugbar</a></li>
 									<li>Event subscribers</li>
 									<li><a href="https://github.com/ARCANEDEV/noCAPTCHA" target="_blank">Google reCaptcha</a></li>
 									<li>Vue</li>
+									<li>Read Only Mode (For Demos)</li>
+									<li>Timezone Support</li>
 									<li>
 										Standards
 										<ul>
@@ -133,36 +135,20 @@
 						</section><!--//doc-section-->
 
 						<section id="screenshots-section" class="doc-section">
-							<h2 class="section-title">Screenshots</h2>
+							<h2 class="section-title">Screenshots (May Vary Slightly)</h2>
 							<div class="section-block">
 								<div class="row">
 									<div class="col-md-6 col-sm-12 col-sm-12">
 										<div class="screenshot-holder">
-											<a href="../assets/images/5.5/1.png" data-title="Home Screen" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/5.5/1.png" alt="screenshot"></a>
-											<a class="mask hoverZoomLink" href="../assets/images/5.5/1.png" data-title="Home Screen" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+											<a href="../assets/images/6.0/1.png" data-title="Home Screen" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/6.0/1.png" alt="screenshot"></a>
+											<a class="mask hoverZoomLink" href="../assets/images/6.0/1.png" data-title="Home Screen" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
 										</div>
 									</div>
 
 									<div class="col-md-6 col-sm-12 col-sm-12">
 										<div class="screenshot-holder">
-											<a href="../assets/images/5.5/9.png" data-title="Built in Macros" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/5.5/9.png" alt="screenshot"></a>
-											<a class="mask hoverZoomLink" href="../assets/images/5.5/9.png" data-title="Built in Macros" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
-										</div>
-									</div>
-
-									<div class="clearfix"></div>
-
-									<div class="col-md-6 col-sm-12 col-sm-12">
-										<div class="screenshot-holder">
-											<a href="../assets/images/5.5/3.png" data-title="User Account Management" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/5.5/3.png" alt="screenshot"></a>
-											<a class="mask hoverZoomLink" href="../assets/images/5.5/3.png" data-title="User Account Management" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
-										</div>
-									</div>
-
-									<div class="col-md-6 col-sm-12 col-sm-12">
-										<div class="screenshot-holder">
-											<a href="../assets/images/5.5/8.png" data-title="Frontend Dashboard" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/5.5/8.png" alt="screenshot"></a>
-											<a class="mask hoverZoomLink" href="../assets/images/5.5/8.png" data-title="Frontend Dashboard" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+											<a href="../assets/images/6.0/9.png" data-title="Built in Macros" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/6.0/9.png" alt="screenshot"></a>
+											<a class="mask hoverZoomLink" href="../assets/images/6.0/9.png" data-title="Built in Macros" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
 										</div>
 									</div>
 
@@ -170,31 +156,15 @@
 
 									<div class="col-md-6 col-sm-12 col-sm-12">
 										<div class="screenshot-holder">
-											<a href="../assets/images/5.5/7.png" data-title="Backend Dashboard" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/5.5/7.png" alt="screenshot"></a>
-											<a class="mask hoverZoomLink" href="../assets/images/5.5/7.png" data-title="Backend Dashboard" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+											<a href="../assets/images/6.0/3.png" data-title="User Account Management" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/6.0/3.png" alt="screenshot"></a>
+											<a class="mask hoverZoomLink" href="../assets/images/6.0/3.png" data-title="User Account Management" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
 										</div>
 									</div>
 
 									<div class="col-md-6 col-sm-12 col-sm-12">
 										<div class="screenshot-holder">
-											<a href="../assets/images/5.5/5.png" data-title="User Management" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/5.5/5.png" alt="screenshot"></a>
-											<a class="mask hoverZoomLink" href="../assets/images/5.5/5.png" data-title="User Management" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
-										</div>
-									</div>
-
-									<div class="clearfix"></div>
-
-									<div class="col-md-6 col-sm-12 col-sm-12">
-										<div class="screenshot-holder">
-											<a href="../assets/images/5.5/6.png" data-title="Create User" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/5.5/6.png" alt="screenshot"></a>
-											<a class="mask hoverZoomLink" href="../assets/images/5.5/6.png" data-title="Create User" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
-										</div>
-									</div>
-
-									<div class="col-md-6 col-sm-12 col-sm-12">
-										<div class="screenshot-holder">
-											<a href="../assets/images/5.5/4.png" data-title="Role Management" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/5.5/4.png" alt="screenshot"></a>
-											<a class="mask hoverZoomLink" href="../assets/images/5.5/4.png" data-title="Role Management" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+											<a href="../assets/images/6.0/8.png" data-title="Frontend Dashboard" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/6.0/8.png" alt="screenshot"></a>
+											<a class="mask hoverZoomLink" href="../assets/images/6.0/8.png" data-title="Frontend Dashboard" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
 										</div>
 									</div>
 
@@ -202,15 +172,15 @@
 
 									<div class="col-md-6 col-sm-12 col-sm-12">
 										<div class="screenshot-holder">
-											<a href="../assets/images/5.5/2.png" data-title="Login As User" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/5.5/2.png" alt="screenshot"></a>
-											<a class="mask hoverZoomLink" href="../assets/images/5.5/2.png" data-title="Login As User" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+											<a href="../assets/images/6.0/7.png" data-title="Backend Dashboard" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/6.0/7.png" alt="screenshot"></a>
+											<a class="mask hoverZoomLink" href="../assets/images/6.0/7.png" data-title="Backend Dashboard" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
 										</div>
 									</div>
 
 									<div class="col-md-6 col-sm-12 col-sm-12">
 										<div class="screenshot-holder">
-											<a href="../assets/images/5.5/11.png" data-title="Log Viewer Dashboard" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/5.5/11.png" alt="screenshot"></a>
-											<a class="mask hoverZoomLink" href="../assets/images/5.5/11.png" data-title="Log Viewer Dashboard" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+											<a href="../assets/images/6.0/5.png" data-title="User Management" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/6.0/5.png" alt="screenshot"></a>
+											<a class="mask hoverZoomLink" href="../assets/images/6.0/5.png" data-title="User Management" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
 										</div>
 									</div>
 
@@ -218,29 +188,61 @@
 
 									<div class="col-md-6 col-sm-12 col-sm-12">
 										<div class="screenshot-holder">
-											<a href="../assets/images/5.5/12.png" data-title="Log Viewer Logs" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/5.5/12.png" alt="screenshot"></a>
-											<a class="mask hoverZoomLink" href="../assets/images/5.5/12.png" data-title="Log Viewer Logs" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+											<a href="../assets/images/6.0/6.png" data-title="Create User" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/6.0/6.png" alt="screenshot"></a>
+											<a class="mask hoverZoomLink" href="../assets/images/6.0/6.png" data-title="Create User" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
 										</div>
 									</div>
 
 									<div class="col-md-6 col-sm-12 col-sm-12">
 										<div class="screenshot-holder">
-											<a href="../assets/images/5.5/13.png" data-title="Log Viewer Details" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/5.5/13.png" alt="screenshot"></a>
-											<a class="mask hoverZoomLink" href="../assets/images/5.5/13.png" data-title="Log Viewer Details" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+											<a href="../assets/images/6.0/4.png" data-title="Role Management" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/6.0/4.png" alt="screenshot"></a>
+											<a class="mask hoverZoomLink" href="../assets/images/6.0/4.png" data-title="Role Management" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+										</div>
+									</div>
+
+									<div class="clearfix"></div>
+
+									<div class="col-md-6 col-sm-12 col-sm-12">
+										<div class="screenshot-holder">
+											<a href="../assets/images/6.0/2.png" data-title="Login As User" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/6.0/2.png" alt="screenshot"></a>
+											<a class="mask hoverZoomLink" href="../assets/images/6.0/2.png" data-title="Login As User" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
 										</div>
 									</div>
 
 									<div class="col-md-6 col-sm-12 col-sm-12">
 										<div class="screenshot-holder">
-											<a href="../assets/images/5.5/14.png" data-title="Log Viewer Details" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/5.5/14.png" alt="screenshot"></a>
-											<a class="mask hoverZoomLink" href="../assets/images/5.5/14.png" data-title="Log Viewer Details" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+											<a href="../assets/images/6.0/11.png" data-title="Log Viewer Dashboard" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/6.0/11.png" alt="screenshot"></a>
+											<a class="mask hoverZoomLink" href="../assets/images/6.0/11.png" data-title="Log Viewer Dashboard" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+										</div>
+									</div>
+
+									<div class="clearfix"></div>
+
+									<div class="col-md-6 col-sm-12 col-sm-12">
+										<div class="screenshot-holder">
+											<a href="../assets/images/6.0/12.png" data-title="Log Viewer Logs" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/6.0/12.png" alt="screenshot"></a>
+											<a class="mask hoverZoomLink" href="../assets/images/6.0/12.png" data-title="Log Viewer Logs" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
 										</div>
 									</div>
 
 									<div class="col-md-6 col-sm-12 col-sm-12">
 										<div class="screenshot-holder">
-											<a href="../assets/images/5.5/15.png" data-title="Log Viewer Details" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/5.5/15.png" alt="screenshot"></a>
-											<a class="mask hoverZoomLink" href="../assets/images/5.5/15.png" data-title="Log Viewer Details" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+											<a href="../assets/images/6.0/13.png" data-title="Log Viewer Details" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/6.0/13.png" alt="screenshot"></a>
+											<a class="mask hoverZoomLink" href="../assets/images/6.0/13.png" data-title="Log Viewer Details" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+										</div>
+									</div>
+
+									<div class="col-md-6 col-sm-12 col-sm-12">
+										<div class="screenshot-holder">
+											<a href="../assets/images/6.0/14.png" data-title="Log Viewer Details" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/6.0/14.png" alt="screenshot"></a>
+											<a class="mask hoverZoomLink" href="../assets/images/6.0/14.png" data-title="Log Viewer Details" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
+										</div>
+									</div>
+
+									<div class="col-md-6 col-sm-12 col-sm-12">
+										<div class="screenshot-holder">
+											<a href="../assets/images/6.0/15.png" data-title="Log Viewer Details" data-toggle="lightbox" class="hoverZoomLink"><img class="img-responsive" src="../assets/images/6.0/15.png" alt="screenshot"></a>
+											<a class="mask hoverZoomLink" href="../assets/images/6.0/15.png" data-title="Log Viewer Details" data-toggle="lightbox"><i class="icon fa fa-search-plus"></i></a>
 										</div>
 									</div>
 
@@ -352,7 +354,7 @@
 								<h3 class="block-title">7. NPM Run '*'</h3>
 								<p>Now that you have the database tables and default rows, you need to build the styles and scripts.</p>
 
-								<p>These files are generated using <a href="https://laravel.com/docs/5.5/mix" target="_blank">Laravel Mix</a>, which is a wrapper around many tools, and works off the <strong>webpack.mix.js</strong> in the root of the project.</p>
+								<p>These files are generated using <a href="https://laravel.com/docs/6.0/mix" target="_blank">Laravel Mix</a>, which is a wrapper around many tools, and works off the <strong>webpack.mix.js</strong> in the root of the project.</p>
 
 								<p>You can build with:</p>
 
@@ -405,7 +407,7 @@
 							<h2 class="section-title">What's Next?</h2>
 
 							<div class="section-block">
-								<p>At this point you have all that you need, you can browse the code base and build the rest of your application the way you normally would. Or you can visit the <a href="../5.5/documentation.html">documentation</a> to get a really good grasp on what's going on behind the scenes.</p>
+								<p>At this point you have all that you need, you can browse the code base and build the rest of your application the way you normally would. Or you can visit the <a href="../6.0/documentation.html">documentation</a> to get a really good grasp on what's going on behind the scenes.</p>
 							</div><!--//section-block-->
 						</section><!--//doc-section-->
 					</div><!--//content-inner-->
