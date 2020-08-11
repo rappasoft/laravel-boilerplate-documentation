@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+	<title>Laravel Boilerplate | Documentation</title>
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" href="../favicon.ico">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+	<!-- Global CSS -->
+	<link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap.min.css">
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" href="../assets/plugins/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" href="../assets/plugins/prism/prism.css">
+	<link rel="stylesheet" href="../assets/plugins/lightbox/dist/ekko-lightbox.min.css">
+	<link rel="stylesheet" href="../assets/plugins/elegant_font/css/style.css">
+
+	<!-- Theme CSS -->
+	<link id="theme-style" rel="stylesheet" href="../assets/css/styles.css">
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body class="body-pink">
+	<div class="page-wrapper">
+		<!-- ******Header****** -->
+		<header id="header" class="header">
+			<div class="container">
+				<div class="branding">
+					<h1 class="logo">
+						<a href="../../index.html">
+							<span aria-hidden="true" class="icon_documents_alt icon"></span>
+							<span class="text-highlight">Laravel</span><span class="text-bold">Boilerplate</span>
+						</a>
+					</h1>
+				</div><!--//branding-->
+				<ol class="breadcrumb">
+					<li><a href="../../index.html">Home</a></li>
+					<li class="active">Documentation</li>
+				</ol>
+			</div><!--//container-->
+		</header><!--//header-->
+		<div class="doc-wrapper">
+			<div class="container">
+				<div id="doc-header" class="doc-header text-center">
+					<h1 class="doc-title"><span aria-hidden="true" class="icon icon_puzzle_alt"></span> Documentation</h1>
+					<div class="meta"><i class="fa fa-clock-o"></i> Last updated: August 10th, 2020</div>
+				</div><!--//doc-header-->
+				<div class="doc-body">
+					<div class="doc-content">
+						<div class="content-inner">
+							<div id="introduction" class="section-block">
+								<h2 class="section-title">Introduction</h2>
+								<div class="section-block">
+									<p>Thanks for trying out Laravel Boilerplate. I have been working on this project for more than 5 years. It is the culmination of thousands of hours of work (though it may not seem it) over these years, keeping up with all the Laravel releases and commits, merging pull requests and dealing with hundreds of issues. Along with the countless hours of reading articles and watching videos on trying to figure out the cleanest and best ways of writing the code that you see. It has and will keep changing over time and you are encouraged to make your project your own and not to feel pressured to my coding styles.</p>
+								</div>
+							</div><!--introduction-->
+
+							<div id="sponsors" class="section-block">
+								<h2 class="section-title">Donations/Sponsors</h2>
+								<div class="section-block">
+									<p>This project takes up a massive amount of my spare time. I will keep trying to keep it up to date and manage the issues and pull requests, but I still work a full time job as well as freelance on nights and weekends.</p>
+
+									<p>This project is <a href="https://github.com/sponsors/rappasoft" target="_blank">GitHub sponsor ready</a>, and sponsors are always appreciated.</p>
+
+									<p>If you can't sponsor, <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=JJWUZ4E9S9SFG&lc=US&item_name=Laravel%205%20Boilerplate&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted" target="_blank">a one time donation</a> would also always be appreciated.</p>
+								</div>
+							</div><!--sponsors-->
+
+							<div id="domains" class="section-block">
+								<h2 class="section-title">Domains</h2>
+								<div class="section-block">
+									<p>This project makes lite use of DDD. It is not a requirement, and you can easily refactor back to the default Laravel file structure using tools in an application like PHPStorm. For more information on domain driven design, take a look at <a href="https://stitcher.io/blog/organise-by-domain" target="_blank">this article</a>, which inspired me to try it out. It is simply a way to try to organize sections of the code into folders and it may or may not be the best approach for you.</p>
+								</div>
+							</div><!--domains-->
+
+							<div id="domain-structure" class="section-block">
+								<h3 class="section-title">Domain Structure</h3>
+								<div class="section-block">
+									<p>The structure of each domain is up to you, but is good practice to just follow the default Laravel app folder structure.</p>
+
+									<p>For example, the Auth domain has code relevant to the authentication/authorization portion of the application, and is broken down into all the relevant folders: Events/Http/Listeners/Models/etc. These are just namespaced files placed here instead of normally like <strong>App/Http/Auth</strong> it's <strong>App/Domains/Auth/Http</strong>.</p>
+								</div>
+							</div><!--domain-structure-->
+
+							<div id="events" class="section-block">
+								<h2 class="section-title">Events</h2>
+								<div class="section-block">
+									<p><strong>Note:</strong> All current events in this project are processed with a like-named listener class that is registered in EventServiceProvider and stored in that domains Listeners directory.</p>
+
+									<p>Most events are used to log information using <a href="https://github.com/spatie/laravel-activitylog" target="_blank">spaties activity-log package</a>.</p>
+
+									<p>Some events have extra functionality:</p>
+
+									<ul>
+										<li><strong>UserLoggedIn:</strong> - Sets the users last_login_at and last_login_ip columns.</li>
+										<li><strong>PasswordReset:</strong> - This one is dispatched from the Laravel core, but is caught to set the password_changed_at column of the current user to now().</li>
+									</ul>
+								</div>
+							</div><!--events-->
+
+							<div id="middleware" class="section-block">
+								<h2 class="section-title">Middleware</h2>
+								<div class="section-block">
+									<p>There are many included middleware that are not Laravel default:</p>
+
+									<ul>
+										<li><strong>App\Domains\Auth\Http\Middleware\AdminCheck</strong> - Passes if the current user is an administrator.</li>
+										<li><strong>App\Domains\Auth\Http\Middleware\PasswordExpires</strong> - If the users password is expired based on the configs, it sends them to the change password page.</li>
+										<li><strong>App\Domains\Auth\Http\Middleware\SuperAdminCheck</strong> - Checks to see if the current user is an administrator and has all roles and permissions.</li>
+										<li><strong>App\Domains\Auth\Http\Middleware\ToBeLoggedOut</strong> - Checks to see if the current users to_be_logged_out boolean is set to true and logs them out if so.</li>
+										<li><strong>App\Domains\Auth\Http\Middleware\TwoFactorAuthenticationStatus</strong> - Checks to see if 2FA is needed for the current route.</li>
+										<li><strong>App\Domains\Auth\Http\Middleware\UserCheck</strong> - Passes if the current user is of type user.</li>
+										<li><strong>App\Domains\Auth\Http\Middleware\UserTypeCheck</strong> - Checks to see if the current user is of the type passed in.</li>
+										<li><strong>App\Http\Middleware\LocaleMiddleware</strong> - Switches the current locale.</li>
+									</ul>
+								</div>
+							</div><!--middleware-->
+
+							<div id="requests" class="section-block">
+								<h2 class="section-title">Requests</h2>
+								<div class="section-block">
+									<p>This method is opinionated, so refactor how you see fit.</p>
+
+									<p>Form requests are used where validation or authorization is needed for a request (and a policy isn't the best choice for the given request) and is injected into the controllers action signature.</p>
+
+									<p>Form requests are not used in Laravel's default auth scaffolding controllers where a validate() method is supplied such as login and register.</p>
+
+									<p><strong>Note:</strong> Any exceptions thrown by form requests are instances of Laravel's AuthorizationException and are caught in the Exception handler which formats the response.</p>
+								</div>
+							</div><!--requests-->
+
+							<div id="models" class="section-block">
+								<h2 class="section-title">Models</h2>
+								<div class="section-block">
+									<p>Models are organized by domain, and furthermore I use traits to organize each model:</p>
+
+									<ul>
+										<li><strong>Attribute/MODELAttribute</strong> - Holds all the attribute modifiers for the given model.</li>
+										<li><strong>Method/MODELMethod</strong> - Holds all the methods for the given model. <em>(There are some methods in the User model that must be in the root, please don't make PRs to move them)</em></li>
+										<li><strong>Relationship/MODELRelationship</strong> - Holds all the relationships for the given model.</li>
+										<li><strong>Scope/MODELScope</strong> - Holds all the scopes for the given model.</li>
+									</ul>
+
+									<p>Model properties such as $dates, $casts, $appends, and $with are used where necessary.</p>
+								</div>
+							</div><!--models-->
+
+							<div id="observers" class="section-block">
+								<h2 class="section-title">Observers</h2>
+								<div class="section-block">
+									<p>There is one observer included with the project, that is registered in the ObserverServiceProvider:</p>
+
+									<ul>
+										<li><strong>UserObserver:</strong> - This observer hooks the users created and updated events and logs new password histories if the config allows for it.</li>
+									</ul>
+								</div>
+							</div><!--observers-->
+
+							<div id="rules" class="section-block">
+								<h2 class="section-title">Observers</h2>
+								<div class="section-block">
+									<p>There is one rule included with the project, that is used in any request dealing with password changes:</p>
+
+									<ul>
+										<li><strong>UnusedPassword:</strong> - Checks to see if the password the user is changing to has not been used for the last X times as defined in the config.</li>
+									</ul>
+								</div>
+							</div><!--rules-->
+
+							<div id="services" class="section-block">
+								<h2 class="section-title">Services</h2>
+								<div class="section-block">
+									<p>Services are classes to attempt to extract database logic out of the controllers.</p>
+
+									<p>There is a BaseService class you can extend, who's constructor accepts a model and inherits some useful functionality such as get(), count(), find(), etc.</p>
+
+									<p>Example:</p>
+
+									<p>Instead of duplicating this line everywhere:</p>
+
+									<div class="code-block">
+										<pre><code class="language-php">$user = User::findOrFail($id);</code></pre>
+									</div><!--//code-block-->
+
+									<p>You can use:</p>
+
+									<div class="code-block">
+										<pre><code class="language-php">$user = resolve(UserService::class)->findOrFail($id);</code></pre>
+									</div><!--//code-block-->
+
+									<p>It's longer, but it's extracted out to one place in the codebase instead of duplicating logic everywhere. This is just an example, and a one liner usually isn't a big deal, but extracting out multi-line logic that doesn't belong in a model or elsewhere is good to have in a service dedicated to one model.</p>
+								</div>
+							</div><!--services-->
+
+							<div id="exceptions" class="section-block">
+								<h2 class="section-title">Exceptions</h2>
+								<div class="section-block">
+									<p>Admittedly, the exception classes could be more descriptive, and that is a goal for the next version.</p>
+
+									<p>But for now, there are two non-laravel exceptions that can be used:</p>
+
+									<ul>
+										<li><strong>GeneralException:</strong> - I use this when I want to throw an exception and stop the execution of code, usually in a catch block or if an save/update fails. This exception does not report to the log files, instead it redirects back with the message (and old input) in an alert-danger bootstrap alert which is rendered from the messages blade partial using the flash_danger key.</li>
+										<li><strong>ReportableException:</strong> - Same functionality as GeneralException except the exceptions get caught by the logger.</li>
+									</ul>
+
+									<p>The Exception Handler class also catches a few Laravel/Package exceptions to perform other functionality.</p>
+								</div>
+							</div><!--exceptions-->
+
+							<div id="helpers" class="section-block">
+								<h2 class="section-title">Helpers</h2>
+								<div class="section-block">
+									<p>Though some people say it's not a good design pattern to have helper classes, I found this method easier to organize than just including a helpers.php file in composers file section.</p>
+
+									<p>The App\Helpers directory comes with one folder:</p>
+
+									<ul>
+										<li><strong>Global:</strong> - The Global folder is a special helpers directory, any file in this folder is autoloaded and the functions become available globally just like a regular helpers file loaded with composer. The HelperServiceProvider does the loading.</li>
+									</ul>
+
+									<p>Any helper class placed outside of the Global folder is just a normal namespaced class that you can resolve normally.</p>
+								</div>
+							</div><!--helpers-->
+
+							<div id="livewire" class="section-block">
+								<h2 class="section-title">Livewire</h2>
+								<div class="section-block">
+									<p>This project includes <a href="https://laravel-livewire.com/" target="_blank">Laravel Livewire</a> as a dependency because it makes use of my <a href="https://github.com/rappasoft/laravel-livewire-tables" target="_blank">Laravel Livewire Tables</a> plugin for the datatables functionality.</p>
+
+									<p>You can find all Livewire components in the <strong>App\Http\Livewire</strong> directory.</p>
+
+									<p><strong>Note:</strong> I used Livewire for the 2FA code box because if the page refreshed, the QR code would change thus invalidating the whole process. I also thought it would be cleaner than Vue since it's such small functionality.</p>
+								</div>
+							</div><!--livewire-->
+
+							<div id="alpine" class="section-block">
+								<h2 class="section-title">Alpine</h2>
+								<div class="section-block">
+									<p>This project includes <a href="https://github.com/alpinejs/alpine/" target="_blank">alpine.js</a> because it is such a nice alternative to lite javascript functionality instead of doing it in Vue or jQuery.</p>
+
+									<p>An example of its use in the project can be found on the user/role create/edit screens of the backend <a href="https://github.com/rappasoft/laravel-boilerplate/blob/master/resources/views/backend/auth/user/create.blade.php#L73" target="_blank">as shown here</a> and <a href="https://github.com/rappasoft/laravel-boilerplate/blob/master/resources/views/backend/auth/user/create.blade.php#L85" target="_blank">here</a> <em>(actual line numbers may vary if this file has been changed since the writing of this documentation).</em></p>
+								</div>
+							</div><!--alpine-->
+
+							<div id="service-providers" class="section-block">
+								<h2 class="section-title">Service Providers</h2>
+								<div class="section-block">
+									<p>This project comes with a few service providers that are not from a default Laravel installation:</p>
+
+									<ul>
+										<li><strong>ComposerServiceProvider</strong> - Registers the view composers for the application.</li>
+										<li><strong>EventServiceProvider</strong> - Registers the event listeners for the application.</li>
+										<li><strong>HelperServiceProvider</strong> - Registers the global helpers for the application.</li>
+										<li><strong>LocaleServiceProvider</strong> - Registers the locale and related blade extension for the application.</li>
+										<li><strong>ObserverServiceProvider</strong> - Registers the model observers for the application.</li>
+									</ul>
+
+									<p>It also changes a few default service providers:</p>
+
+									<ul>
+										<li><strong>AuthServiceProvider</strong> - Added the before Gate so the super administrators don't need all roles and permissions to have access.</li>
+										<li><strong>RouteServiceProvider</strong> - Added the deletedUser route binding when working with deleted users so it knows to look in the trashed items.</li>
+									</ul>
+								</div>
+							</div><!--service-providers-->
+
+							<div id="configuration" class="section-block">
+								<h2 class="section-title">Configuration</h2>
+								<div class="section-block">
+									<p>All of the configurable items of the boilerplate can be found in the <a href="https://github.com/rappasoft/laravel-boilerplate/blob/master/config/boilerplate.php" target="_blank"><strong>config/boilerplate.php</strong></a> file. Each item should have a relevant doc block.</p>
+
+									<p>There may be other configuration files published by default from some packages such as activitylog, permission, geoip, etc.</p>
+								</div>
+							</div><!--configuration-->
+
+							<div id="resources" class="section-block">
+								<h2 class="section-title">Resources</h2>
+								<div class="section-block">
+									<p>This project follows standard Laravel resource folder structure.</p>
+								</div>
+							</div><!--resources-->
+
+							<div id="js" class="section-block">
+								<h3 class="section-title">Javascript</h3>
+								<div class="section-block">
+									<p>The javascript files are as follows:</p>
+
+									<ul>
+										<li><strong>backend/app.js</strong> - Compiles the backend javascript</li>
+										<li><strong>frontend/app.js</strong> - Compiles the frontend javascript</li>
+										<li><strong>bootstrap.js</strong> - Bootstrap functionality for the frontend</li>
+										<li><strong>plugins.js</strong> - Random javascript/jQuery functionality used globally</li>
+									</ul>
+								</div>
+							</div><!--js-->
+
+							<div id="lang" class="section-block">
+								<h3 class="section-title">Language</h3>
+								<div class="section-block">
+									<p>All language files for this version of the boilerplate are in <a href="https://laravel.com/docs/7.x/localization#using-translation-strings-as-keys" target="_blank">JSON format</a> except default Laravel files and package languages if published.</p>
+								</div>
+							</div><!--lang-->
+
+							<div id="sass" class="section-block">
+								<h3 class="section-title">SCSS</h3>
+								<div class="section-block">
+									<p>The SCSS files are as follows:</p>
+
+									<ul>
+										<li><strong>backend/app.scss</strong> - Compiles the backend CSS</li>
+										<li><strong>frontend/_global.scss</strong> - Frontend global SCSS</li>
+										<li><strong>frontend/_variables.scss</strong> - Frontend Bootstrap overrides</li>
+										<li><strong>frontend/app.scss</strong> - Compiles the frontend CSS</li>
+										<li><strong>_global.scss</strong> - Global styles included in frontend and backend</li>
+									</ul>
+								</div>
+							</div><!--sass-->
+
+							<div id="views" class="section-block">
+								<h3 class="section-title">Views</h3>
+								<div class="section-block">
+									<p>The views are structured much like the rest of the application, frontend/backend/etc. They usually follow the namespace structure.</p>
+
+									<p>There's only one folder to note, and that is <strong>components</strong> which are <a href="https://laravel.com/docs/7.x/blade#components" target="_blank">blade components</a> used throughout the blade files. At the time of this writing they are all anonymous components, or they don't have an associated class and just work off of the props passed into them.</p>
+								</div>
+							</div><!--views-->
+
+							<div id="routes" class="section-block">
+								<h2 class="section-title">Routing</h2>
+								<div class="section-block">
+									<em>Coming Soon</em>
+								</div>
+							</div><!--routes-->
+
+							<div id="factories" class="section-block">
+								<h2 class="section-title">Factories</h2>
+								<div class="section-block">
+									<em>Coming Soon</em>
+								</div>
+							</div><!--factories-->
+
+							<div id="seeders" class="section-block">
+								<h2 class="section-title">Seeders</h2>
+								<div class="section-block">
+									<em>Coming Soon</em>
+								</div>
+							</div><!--seeders-->
+
+							<div id="testing" class="section-block">
+								<h2 class="section-title">Testing</h2>
+								<div class="section-block">
+									<em>Coming Soon</em>
+								</div>
+							</div><!--testing-->
+
+							<div id="misc" class="section-block">
+								<h2 class="section-title">Misc</h2>
+							</div><!--misc-->
+
+							<div id="base-service" class="section-block">
+								<h3 class="section-title">Base Service</h3>
+								<div class="section-block">
+									<em>Coming Soon</em>
+								</div>
+							</div><!--base-service-->
+
+							<div id="breadcrumbs" class="section-block">
+								<h3 class="section-title">Breadcrumbs</h3>
+								<div class="section-block">
+									<em>Coming Soon</em>
+								</div>
+							</div><!--breadcrumbs-->
+
+							<div id="captcha" class="section-block">
+								<h3 class="section-title">Captcha</h3>
+								<div class="section-block">
+									<em>Coming Soon</em>
+								</div>
+							</div><!--captcha-->
+
+							<div id="flash-messages" class="section-block">
+								<h3 class="section-title">Flash Messages</h3>
+								<div class="section-block">
+									<em>Coming Soon</em>
+								</div>
+							</div><!--flash-messages-->
+
+							<div id="gravatar" class="section-block">
+								<h3 class="section-title">Gravatar</h3>
+								<div class="section-block">
+									<em>Coming Soon</em>
+								</div>
+							</div><!--gravatar-->
+
+							<div id="other-model-traits" class="section-block">
+								<h3 class="section-title">Other Model Traits</h3>
+								<div class="section-block">
+									<em>Coming Soon</em>
+								</div>
+							</div><!--other-model-traits-->
+
+							<div id="password-rules" class="section-block">
+								<h3 class="section-title">Password Rules</h3>
+								<div class="section-block">
+									<em>Coming Soon</em>
+								</div>
+							</div><!--password-rules-->
+
+							<div id="permissions" class="section-block">
+								<h3 class="section-title">Permissions</h3>
+								<div class="section-block">
+									<em>Coming Soon</em>
+								</div>
+							</div><!--permissions-->
+
+							<div id="webpack" class="section-block">
+								<h3 class="section-title">Webpack</h3>
+								<div class="section-block">
+									<em>Coming Soon</em>
+								</div>
+							</div><!--webpack-->
+						</div><!--//content-inner-->
+					</div><!--//doc-content-->
+
+					<div class="doc-sidebar">
+						<nav id="doc-nav">
+							<ul id="doc-menu" class="nav doc-menu hidden-xs" data-spy="affix">
+								<li><a class="scrollto" href="#introduction">Introduction</a></li>
+								<li><a class="scrollto" href="#sponsors">Sponsors</a></li>
+								<li>
+									<a class="scrollto" href="#domains">Domains</a>
+									<ul>
+										<li><a class="scrollto" href="#domain-structure">Structure</a></li>
+									</ul>
+								</li>
+								<li><a class="scrollto" href="#events">Events</a></li>
+								<li><a class="scrollto" href="#middleware">Middleware</a></li>
+								<li><a class="scrollto" href="#requests">Requests</a></li>
+								<li><a class="scrollto" href="#models">Models</a></li>
+								<li><a class="scrollto" href="#observers">Observers</a></li>
+								<li><a class="scrollto" href="#rules">Rules</a></li>
+								<li><a class="scrollto" href="#services">Services</a></li>
+								<li><a class="scrollto" href="#exceptions">Exceptions</a></li>
+								<li><a class="scrollto" href="#helpers">Helpers</a></li>
+								<li><a class="scrollto" href="#livewire">Livewire</a></li>
+								<li><a class="scrollto" href="#alpine">Alpine</a></li>
+								<li><a class="scrollto" href="#service-providers">Service Providers</a></li>
+								<li><a class="scrollto" href="#configuration">Configuration</a></li>
+								<li>
+									<a class="scrollto" href="#resources">Resources</a>
+									<ul>
+										<li><a class="scrollto" href="#js">Javascript</a></li>
+										<li><a class="scrollto" href="#lang">Languages</a></li>
+										<li><a class="scrollto" href="#sass">SASS</a></li>
+										<li><a class="scrollto" href="#views">Views</a></li>
+									</ul>
+								</li>
+								<li><a class="scrollto" href="#routes">Routes</a></li>
+								<li><a class="scrollto" href="#factories">Factories</a></li>
+								<li><a class="scrollto" href="#seeders">Seeders</a></li>
+								<li><a class="scrollto" href="#testing">Testing</a></li>
+								<li>
+									<a class="scrollto" href="#misc">Misc.</a>
+									<ul>
+										<li><a class="scrollto" href="#base-service">Base Service</a></li>
+										<li><a class="scrollto" href="#breadcrumbs">Breadcrumbs</a></li>
+										<li><a class="scrollto" href="#captcha">Captcha</a></li>
+										<li><a class="scrollto" href="#flash-messages">Flash Messages</a></li>
+										<li><a class="scrollto" href="#gravatar">Gravatar</a></li>
+										<li><a class="scrollto" href="#other-model-traits">Other Model Traits</a></li>
+										<li><a class="scrollto" href="#password-rules">Password Rules</a></li>
+										<li><a class="scrollto" href="#permissions">Permissions</a></li>
+										<li><a class="scrollto" href="#webpack">Webpack</a></li>
+									</ul>
+								</li>
+							</ul><!--//doc-menu-->
+						</nav>
+					</div><!--//doc-sidebar-->
+				</div><!--//doc-body-->
+			</div><!--//container-->
+		</div><!--//doc-wrapper-->
+	</div><!--//page-wrapper-->
+
+	<footer class="footer text-center">
+		<div class="container">
+			<!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
+			<small class="copyright">Designed with <i class="fa fa-heart"></i> by <a href="http://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a> for developers.</small>
+
+			<small class="copyright">Created by <a href="http://www.rappasoft.com" target="_blank">Anthony Rappa</a> and made perfect by an <a href="https://github.com/rappasoft/laravel-boilerplate/graphs/contributors" target="_blank">amazing community of people.</a></small>
+
+		</div><!--//container-->
+	</footer><!--//footer-->
+
+	<!-- Main Javascript -->
+	<script type="text/javascript" src="../assets/plugins/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript" src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../assets/plugins/prism/prism.js"></script>
+	<script type="text/javascript" src="../assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>
+	<script type="text/javascript" src="../assets/plugins/lightbox/dist/ekko-lightbox.min.js"></script>
+	<script type="text/javascript" src="../assets/plugins/jquery-match-height/jquery.matchHeight-min.js"></script>
+	<script type="text/javascript" src="../assets/js/main.js"></script>
+</body>
+</html>
