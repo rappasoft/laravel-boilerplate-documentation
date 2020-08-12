@@ -60,6 +60,8 @@
 								<h2 class="section-title">Introduction</h2>
 								<div class="section-block">
 									<p>Thanks for trying out Laravel Boilerplate. I have been working on this project for more than 5 years. It is the culmination of thousands of hours of work (though it may not seem it) over these years, keeping up with all the Laravel releases and commits, merging pull requests and dealing with hundreds of issues. Along with the countless hours of reading articles and watching videos on trying to figure out the cleanest and best ways of writing the code that you see. It has and will keep changing over time and you are encouraged to make your project your own and not to feel pressured to my coding styles.</p>
+
+									<p>Feel free to update or improve this documentation from the <a href="https://github.com/rappasoft/laravel-boilerplate-documentation" target="_blank">GitHub repository</a>.</p>
 								</div>
 							</div><!--introduction-->
 
@@ -165,7 +167,7 @@
 							</div><!--observers-->
 
 							<div id="rules" class="section-block">
-								<h2 class="section-title">Observers</h2>
+								<h2 class="section-title">Rules</h2>
 								<div class="section-block">
 									<p>There is one rule included with the project, that is used in any request dealing with password changes:</p>
 
@@ -337,28 +339,40 @@
 							<div id="routes" class="section-block">
 								<h2 class="section-title">Routing</h2>
 								<div class="section-block">
-									<em>Coming Soon</em>
+									<p>The routing is also broken into frontend and backend.</p>
+
+									<p>A few things to note:</p>
+
+									<ul>
+										<li>The backend routes are protected by the admin middleware group which is defined in the HTTP Kernel.</li>
+										<li>Authorization is done via the route middleware, not in the controllers or form requests.</li>
+										<li>Breadcrumbs are done via the routes using <a href="https://github.com/tabuna/breadcrumbs" target="_blank">this package</a>.</li>
+									</ul>
 								</div>
 							</div><!--routes-->
 
 							<div id="factories" class="section-block">
 								<h2 class="section-title">Factories</h2>
 								<div class="section-block">
-									<em>Coming Soon</em>
+									<p>Factories are supplied for all models with scopes where applicable.</p>
 								</div>
 							</div><!--factories-->
 
 							<div id="seeders" class="section-block">
 								<h2 class="section-title">Seeders</h2>
 								<div class="section-block">
-									<em>Coming Soon</em>
+									<p>Seeders are supplied for authentication and user/roles.</p>
+
+									<p>Some seed data only gets seeded if the application is in local/testing mode so you don't have extra data to deal with or delete in production.</p>
 								</div>
 							</div><!--seeders-->
 
 							<div id="testing" class="section-block">
 								<h2 class="section-title">Testing</h2>
 								<div class="section-block">
-									<em>Coming Soon</em>
+									<p>Tests cover as much functionality as I could on both the frontend and backend.</p>
+
+									<p>The standard phpunit.xml file sets all the necessary environment variables, and runs on a sqlite database in memory that is defined in the database config file.</p>
 								</div>
 							</div><!--testing-->
 
@@ -369,63 +383,113 @@
 							<div id="base-service" class="section-block">
 								<h3 class="section-title">Base Service</h3>
 								<div class="section-block">
-									<em>Coming Soon</em>
+									<p>The BaseService is meant to be extended and a model defined in the constructor.</p>
+
+									<p>You may add to the BaseService class to get more functionality not included available to all of your model services.</p>
+
+									<p>You have no obligation to use this class if you don't want to.</p>
 								</div>
 							</div><!--base-service-->
 
 							<div id="breadcrumbs" class="section-block">
 								<h3 class="section-title">Breadcrumbs</h3>
 								<div class="section-block">
-									<em>Coming Soon</em>
+									<p>The breadcrumbs are defined in the route files using the <a href="https://github.com/tabuna/breadcrumbs" target="_blank">tabuna/breadcrumbs</a> package and the views are defined in <strong>frontend/includes/partials/breadcrumbs</strong> and <strong>backend/includes/partials/breadcrumbs</strong>.</p>
 								</div>
 							</div><!--breadcrumbs-->
 
 							<div id="captcha" class="section-block">
 								<h3 class="section-title">Captcha</h3>
 								<div class="section-block">
-									<em>Coming Soon</em>
+									<p>Google Invisible CAPTCHA is built in to both the login and register screens using the <a href="https://github.com/albertcht/invisible-recaptcha" target="_blank">albertcht/invisible-recaptcha</a> package.</p>
+
+									<p>You can toggle them on/off using the <strong>LOGIN_CAPTCHA_STATUS</strong> and <strong>REGISTRATION_CAPTCHA_STATUS</strong> .env items.</p>
+
+									<p>Don't forget to add your API keys to the .env file's <strong>INVISIBLE_RECAPTCHA_SITEKEY</strong> and <strong>INVISIBLE_RECAPTCHA_SITEKEY</strong> keys.</p>
 								</div>
 							</div><!--captcha-->
 
 							<div id="flash-messages" class="section-block">
 								<h3 class="section-title">Flash Messages</h3>
 								<div class="section-block">
-									<em>Coming Soon</em>
+									<p>Flash messages are defined in the <strong>includes/partials/messages</strong> blade file.</p>
+
+									<p>The following are available to flash to the session:</p>
+
+									<ul>
+										<li>flash_success</li>
+										<li>flash_warning</li>
+										<li>flash_info</li>
+										<li>flash_danger</li>
+										<li>flash_message</li>
+									</ul>
+
+									<p>It also catches any messages from the error bag and displays in an error bootstrap alert.</p>
+
+									<p>You can use Laravel's view helpers to set the messages as seen in many controllers:</p>
+
+									<div class="code-block">
+										<pre><code class="language-php">return view('my-view')->withFlashDanger('Something went wrong');</code></pre>
+										or
+										<pre><code class="language-php">return view('my-view')->with('flash_danger', 'Something went wrong');</code></pre>
+										or
+										<pre><code class="language-php">session()->flash('flash_danger', 'Something went wrong');</code></pre>
+									</div><!--//code-block-->
 								</div>
 							</div><!--flash-messages-->
 
 							<div id="gravatar" class="section-block">
 								<h3 class="section-title">Gravatar</h3>
 								<div class="section-block">
-									<em>Coming Soon</em>
+									<p>The user images in this project are powered by gravatar based on the users e-mail address.</p>
+
+									<p>You can swap this functionality out for a user uploaded image if you prefer. Just change the <strong>getAvatar</strong> method in the UserMethod class.</p>
 								</div>
 							</div><!--gravatar-->
 
 							<div id="other-model-traits" class="section-block">
 								<h3 class="section-title">Other Model Traits</h3>
 								<div class="section-block">
-									<em>Coming Soon</em>
+									<p>There is a trait included in the project that is not used on any model, but might be useful in your project:</p>
+
+									<ul>
+										<li><strong>UUID:</strong> - Add a uuid() column to your model and this trait. That UUID column will be automatically filled when the model is created. It also provides a uuid($uuid) scope to query the model by. You can change the column name by overriding the <strong>uuidName</strong> property of the model.</li>
+									</ul>
 								</div>
 							</div><!--other-model-traits-->
 
 							<div id="password-rules" class="section-block">
 								<h3 class="section-title">Password Rules</h3>
 								<div class="section-block">
-									<em>Coming Soon</em>
+									<p>The password rules are managed by the <a href="https://github.com/langleyfoxall/laravel-nist-password-rules" target="_blank">langleyfoxall/laravel-nist-password-rules</a> package and the implementation can be found in the validation rules anywhere a password is created or updated.</p>
+
+									<p>Example:</p>
+
+									<div class="code-block">
+										<pre><code class="language-php">'password' => array_merge(['max:100'], PasswordRules::register()),</code></pre>
+									</div><!--//code-block-->
+
+									<p>You can see the full set of rules in the <strong>LangleyFoxall\LaravelNISTPasswordRules\PasswordRules</strong> class.</p>
 								</div>
 							</div><!--password-rules-->
 
 							<div id="permissions" class="section-block">
 								<h3 class="section-title">Permissions</h3>
 								<div class="section-block">
-									<em>Coming Soon</em>
+									<p>Permissions are managed by the <a href="https://github.com/spatie/laravel-permission" target="_blank">spatie/laravel-permission</a> package.</p>
+
+									<p>The permissions are seeded in the PermissionRoleSeeder and uses the <a href="https://docs.spatie.be/laravel-permission/v3/basic-usage/wildcard-permissions/" target="_blank">wildcard setting</a>.</p>
+
+									<p>Extra functionality has been added to the permission tables to enable permission/roles via a specific user type, parent/child permissions, as well as sorting.</p>
+
+									<p>When choosing roles/permissions for a new/existing user in the backend, alpine.js will decide which options are allowed for the selected user type.</p>
 								</div>
 							</div><!--permissions-->
 
 							<div id="webpack" class="section-block">
 								<h3 class="section-title">Webpack</h3>
 								<div class="section-block">
-									<em>Coming Soon</em>
+									<p>The webpack file in the root works like a normal Laravel webpack file, except frontend/backend are extracted separately, and the vendor files are extracted to vendor.js.</p>
 								</div>
 							</div><!--webpack-->
 						</div><!--//content-inner-->
